@@ -33,7 +33,7 @@ class AddPeople extends React.Component{
 	    value:0,
 	    sex:"男"
 	  };
-	  
+	  this.handleBack=this.handleBack.bind(this);
 	}
 	state = {
     date: now,
@@ -49,6 +49,9 @@ class AddPeople extends React.Component{
 			[key]:val
 		})
 	}	
+	handleBack(){
+		this.props.history.push("./confirmorder");
+	}
 	onChange = (value) => {
 	    this.setState({
 	      value
@@ -80,7 +83,7 @@ class AddPeople extends React.Component{
 		return(
 			<div className="addpeople">
 				<div className="navbar">
-					<NavBar mode="dark"  icon={<Icon type="left" />}
+					<NavBar mode="dark"  icon={<Icon type="left" onClick={this.handleBack}/>}
  rightContent="完成">添加乘车人</NavBar>
 				</div>
 				

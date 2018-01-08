@@ -25,13 +25,32 @@ class BusinessService extends React.Component{
        				<div className="service-list">
        					<img src={require("./img/food.jpg")} alt=""/>
        					<div className="service-icon">
-	       					<span className="icon-food"></span>
+	       					<span className="icon-food">
+	       						<img src={require("./img/icon-food.png")} alt=""/>
+	       					</span>
 	       					<p className="service-text">.订餐服务.</p>
        					</div>
        				</div>
        				<WhiteSpace size="lg"/>
        				<div className="service-list">
        					<img src={require("./img/car.jpg")} alt=""/>
+       					<div className="service-icon">
+	       					<span className="icon-food">
+	       						<img src={require("./img/icon-car.png")} alt=""/>
+	       					</span>
+	       					<p className="service-text">.约车服务.</p>
+       					</div>
+       				</div>	
+       				<WhiteSpace size="lg"/>
+       				<div className="service-list">
+       					<img src={require("./img/car.jpg")} alt=""/>
+       					<div className="service-icon">
+	       					<span className="icon-food">
+	       						<img src={require("./img/icon-idcard.png")} alt=""/>
+	       					</span>
+	       					<p className="service-text">.信用卡服务.</p>
+	       					<img src={require("./img/icon-hot.png")} alt="" style={{width:"30px",height:"30px",position:"absolute",right:"10px",top:"5px"}}/>
+       					</div>
        				</div>	
        			</WingBlank>
        			<NavLink/>
