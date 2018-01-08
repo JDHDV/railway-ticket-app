@@ -47,7 +47,7 @@ class ChooseData extends React.Component {
 		body.style.overflowY = this.originbodyScrollY;
 		this.setState({
 			show: false,
-			startTime: undefined
+			startTime: now.getFullYear()+"-"+parseInt(now.getMonth())+1+"-"+now.getDate()
 		});
 	}
 	render() {

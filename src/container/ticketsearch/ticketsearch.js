@@ -46,7 +46,6 @@ class TicketSearch extends React.Component{
 		this.props.history.push("./chat");
 	}
 	handleChange(props){
-		console.log(this.props)
 		this.setState({start:this.state.end,end:this.state.start});
 	}
 	render(){
