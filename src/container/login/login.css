@@ -1,0 +1,20 @@
+.login{
+	position: relative;
+	z-index: -9999;
+}
+.btn-container{
+	width:60%;
+	margin:20px auto 
+}
+.error-msg{
+	width:90%;
+	text-align:center;
+	color:red;
+}
+.login-container p{
+	width:20%;
+	line-height:30px;
+	margin:0px auto;
+	text-align:center;
+	font-size:18px;
+}

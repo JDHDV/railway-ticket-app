@@ -1,0 +1,38 @@
+.car-list{
+	width: 100%;
+	clear: both;
+	height: 44px;
+}
+.car-list ul{
+	width: 100%;
+	height: 44px;
+	margin-left: 0px;
+	padding-left: 0px;
+}
+.car-list ul li{
+	width: 25%;
+	text-align: center;
+	float: left;
+	list-style: none;
+	line-height: 44px;
+}
+.car-list ul li.current{
+	color:#fff;
+	background: #108EE9;
+	border-radius: 5px;
+}
+.car-list .am-list-item {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    padding-left: 0px;
+    min-height: 44px;
+    background-color: #fff;
+    vertical-align: middle;
+    overflow: hidden;
+    -webkit-transition: background-color 200ms;
+    -o-transition: background-color 200ms;
+    transition: background-color 200ms;
+    -ms-flex-align: center;
+    align-items: center;
+}

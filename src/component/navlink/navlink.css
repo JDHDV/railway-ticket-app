@@ -1,0 +1,22 @@
+.footer-navlink {
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+}
+
+.footer-navlink .am-list-body {
+	line-height: 44px;
+    position: relative;
+    background:#333;
+    color:#fff;
+    border-bottom: 1PX solid #ddd;
+}
+.footer-navlink .am-flexbox {
+    text-align: center;
+    overflow: hidden;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+}

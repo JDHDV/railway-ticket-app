@@ -1,0 +1,29 @@
+.add-text{
+	width: 34%;
+	color:#F4A460;
+	text-align: center;
+	margin: 0 auto;
+}
+.choose-seat-list{
+	text-align: center;
+}
+i{
+	color: red;
+	margin-right: 10px;
+}
+.choose-seat-list .am-list-item .am-list-line .am-list-content {
+    -ms-flex: 1;
+    /* flex: 1 1; */
+    color: #000;
+    font-size: 17px;
+    line-height: 1.5;
+    text-align: center;
+    /* width: 85px; */
+    width: 20%;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    /* white-space: nowrap; */
+    padding-top: 7px;
+    padding-bottom: 7px;
+}

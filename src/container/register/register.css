@@ -1,0 +1,72 @@
+.register{
+	background: #fff;
+	position: relative;
+	z-index: 2;
+}
+.error-msg{
+	width:90%;
+	text-align: center;
+	color: red;
+}
+.my-list{
+	font-size:12px
+}
+
+.register .am-list-item .am-input-label {
+    color: #000;
+    font-size: 14px;
+    margin-left: 0;
+    margin-right: 5px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 2px 0;
+}
+.register .am-accordion .am-accordion-item .am-accordion-header {
+    position: relative;
+    color: #000;
+    font-size: 14px;
+    height: 44px;
+    line-height: 44px;
+    background-color: #fff;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    padding-left: 15px;
+    padding-right: 30px;
+    border-bottom: 1PX solid #ddd;
+    width: auto;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.register .am-list-item .am-list-line .am-list-content {
+    -ms-flex: 1;
+    /* flex: 1 1; */
+    color: #000;
+    font-size: 11px;
+    line-height: 1.5;
+    text-align: left;
+    /* width: 85px; */
+    width: 20%;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    /* white-space: nowrap; */
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+.register .am-list-item .am-input-control input {
+    color: #000;
+    font-size: 14px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    padding: 2px 0;
+    border: 0;
+    background-color: transparent;
+    line-height: 1;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}

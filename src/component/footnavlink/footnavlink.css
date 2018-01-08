@@ -1,0 +1,14 @@
+.foot-navlink{
+	text-align: center;
+	background:#333;
+	color:#fff;
+	position:fixed;
+	bottom: 0px;
+	left:0px;
+	right: 0px;
+	line-height: 45px;
+}
+.arrow-up{
+	margin-left:2px;
+	vertical-align: middle;
+}
