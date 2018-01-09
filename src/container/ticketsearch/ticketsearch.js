@@ -1,7 +1,7 @@
 //车票预订
 import React from "react"
 import {Switch,Route} from "react-router-dom"
-import {NavBar,List,WingBlank,WhiteSpace,Button,Flex,Checkbox,Modal} from "antd-mobile"
+import {NavBar,List,WingBlank,WhiteSpace,Button,Flex,Checkbox} from "antd-mobile"
 
 import "./ticketsearch.css"
 import Food from "../food/food"
