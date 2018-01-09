@@ -41,6 +41,7 @@ class AddressSearch extends React.Component{
 		}
         this.refs.container.scrollTop=sum;
 	}
+	//滑动
 	handleScroll(e){
 	    let clientHeight = this.refs.container.clientHeight; //可视区域高度
 	    let scrollTop  = this.refs.container.scrollTop;  //滚动条滚动高度
@@ -62,9 +63,11 @@ class AddressSearch extends React.Component{
 	    } 
 	}
 	//模糊查询
-	handleChange(){
-		console.log(111)
+	handleChange(val){
+		console.log(val);
 	}
+	//选择站点
+	
 	render(){		
 		return(
 			<div className="address-search" ref="container" 
@@ -72,7 +75,7 @@ class AddressSearch extends React.Component{
 				<div className="address-search-header">
 					<NavBar mode="dark" icon={<Icon type="left" onClick={this.handleBack}/>}>车站选择</NavBar>
 					<WhiteSpace/>
-					<SearchBar placeholder="请输入城市/车站名" maxLength={8} onChange={this.handleChange}/>
+					<SearchBar placeholder="请输入城市/车站名" maxLength={8} onChange={(val)=>this.handleChange(val)} ref={(searchInput)=>{this.searchInput=searchInput}}/>
 				</div>
 				
 				<div className="station-container">
@@ -83,7 +86,7 @@ class AddressSearch extends React.Component{
 					</div>
 					<div className="station-list">
 						{addressData.map(val=>(<List renderHeader={val.title}  key={val.title} ref={(list)=>{this.state.listGroup.push(list);}}>
-							{val.items.map(v=>(<List.Item key={v}>{v}</List.Item>))}
+							{val.items.map(v=>(<List.Item key={v} onClick={()=>{console.log(v)}}>{v}</List.Item>))}
 						</List>))}
 					</div>
 				</div>

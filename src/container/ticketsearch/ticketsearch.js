@@ -1,6 +1,9 @@
 //车票预订
 import React from "react"
+import {connect} from "react-redux"
 import {Switch,Route} from "react-router-dom"
+
+import {ticketSearch} from "../../redux/ticket.redux"
 import {NavBar,List,WingBlank,WhiteSpace,Button,Flex,Checkbox} from "antd-mobile"
 
 import "./ticketsearch.css"
@@ -14,16 +17,15 @@ import ChooseData from "../../component/choosedata/choosedata"
 import CarCategory from "../../component/carcategory/carcategory"
 import IconNavLink from "../../component/iconnavlink/iconnavlink"
 		
+@connect(state=>{return state.ticket},{ticketSearch})
 class TicketSearch extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={
-			start:"南宁东",
-			end:"广州南",
 			train_no:"",
 			train_type:"",
-			start_station: "",
-			end_station:"",
+			start_station: "南宁东",
+			end_station:"广州南",
 			start_time:"",
 			end_time:"",
 			run_time:"",
@@ -38,6 +40,7 @@ class TicketSearch extends React.Component{
 	}
 	handleSearch(){
 		this.props.history.push("./searchresult");
+ //       this.props.ticketSearch(this.state);
 	}
 	handleAddress(){
         this.props.history.push("./addresssearch")
@@ -45,8 +48,8 @@ class TicketSearch extends React.Component{
 	handleChat(){
 		this.props.history.push("./chat");
 	}
-	handleChange(props){
-		this.setState({start:this.state.end,end:this.state.start});
+	handleChange(){
+		this.setState({start_station:this.state.end_station,end_station:this.state.start_station});
 	}
 	render(){
 		const iconNavList=[{
@@ -108,7 +111,9 @@ class TicketSearch extends React.Component{
 			value:"硬座"
 		}];
 		const talkUrl=require("./img/talk.png");
+		
 		return(
+			
 			<div className="ticket-search">
 				<NavBar mode="dark" key={talkUrl} rightContent={[
       				<List.Item thumb={talkUrl} key="2" className="icon-talk" style={{background:"transparent"}} onClick={this.handleChat}/>]}>
@@ -123,9 +128,9 @@ class TicketSearch extends React.Component{
 				<WingBlank>
 					<List >
 						<Flex className="address-list">
-							<Flex.Item onClick={this.handleAddress}>{this.state.start}</Flex.Item>
+							<Flex.Item onClick={this.handleAddress}>{this.state.start_station}</Flex.Item>
 							<Flex.Item><img src={require("./img/change.png")} alt="" className="icon_change" onClick={this.handleChange}/></Flex.Item>
-							<Flex.Item onClick={this.handleAddress}>{this.state.end}</Flex.Item>
+							<Flex.Item onClick={this.handleAddress}>{this.state.end_station}</Flex.Item>
 						</Flex>
 					</List>
 					<List className="time-list">
@@ -134,7 +139,7 @@ class TicketSearch extends React.Component{
 							<Flex.Item>出发时间</Flex.Item>
 						</Flex>
 						<Flex>
-							<Flex.Item><ChooseData/></Flex.Item>
+							<Flex.Item><ChooseData /></Flex.Item>
 							<Flex.Item><ChooseTime data={timeList}/></Flex.Item>
 						</Flex>
 					</List>

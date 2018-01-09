@@ -22,7 +22,7 @@ class ConfirmOrder extends React.Component{
 	
 	render(){
 		return(
-			<div>
+			<div className="confirm-order">
 				<NavBar mode="dark">
 					确认订单
 				</NavBar>

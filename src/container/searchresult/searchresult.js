@@ -153,8 +153,5 @@ class SearchResult extends React.Component{
 		)
 	}
 }
-//			     					<List.Item multipleLine> 
-//				     					<p><img src={require("./img/ticket.png")} alt=""/></p>
-//				     					<List.Item.Brief>5小时45分钟</List.Item.Brief>
-//		        </List.Item>
+
 export default SearchResult

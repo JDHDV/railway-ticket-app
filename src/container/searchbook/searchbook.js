@@ -15,6 +15,7 @@ switch(day){
 	case 5:chday="五";break;
 	case 6:chday="六";break;
 	case 7:chday="天";break;
+	default:chday="";break;
 }
 
 class SearchBook extends React.Component{

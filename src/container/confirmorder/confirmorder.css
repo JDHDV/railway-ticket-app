@@ -27,3 +27,6 @@ i{
     padding-top: 7px;
     padding-bottom: 7px;
 }
+.confirm-order .am-list-item .am-list-thumb:first-child {
+    margin-right: 5px;
+}

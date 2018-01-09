@@ -17,17 +17,17 @@ class ChooseData extends React.Component {
 			en: false,
 			show: false,
 			config: {},
-			startTime:now.getFullYear()+"-"+parseInt(now.getMonth())+1+"-"+(now.getDate()<10?"0"+now.getDate():now.getDate())
+			startTime:now.getFullYear()+"-"+parseInt(now.getMonth())+1+"-"+(now.getDate()<10?("0"+now.getDate()):now.getDate())
 		};
-	}
-	renderBtn(zh, en, config = {},startTime) {
+	}	
+	renderBtn(zh, en,config = {},startTime) {
 		config.locale = this.state.en ? enUS : zhCN;
 		return ( < List.Item onClick = {
 			() => {
 				body.style.overflowY = "hidden";
 				this.setState({
 					show: true,
-					startTime:now.getFullYear()+"-"+((parseInt(now.getMonth())+1)<10?"0"+(parseInt(now.getMonth())+1):(parseInt(now.getMonth())+1))+"-"+(now.getDate()<10?"0"+now.getDate():now.getDate()),
+					startTime:now.getFullYear()+"-"+((parseInt(now.getMonth())+1)<10?("0"+(parseInt(now.getMonth())+1)):(parseInt(now.getMonth())+1))+"-"+(now.getDate()<10?"0"+now.getDate():now.getDate()),
 					config
 				});
 			}
@@ -40,45 +40,30 @@ class ChooseData extends React.Component {
 		body.style.overflowY = this.originbodyScrollY;
 		this.setState({
 			show: false,
-			startTime:startTime.getFullYear()+"-"+((parseInt(startTime.getMonth()+1))<10?"0"+(parseInt(startTime.getMonth()+1)):(parseInt(startTime.getMonth()+1)))+"-"+(startTime.getDate()<10?"0"+startTime.getDate():startTime.getDate())
+			startTime:startTime.getFullYear()+"-"+((parseInt(startTime.getMonth()+1))<10?("0"+(parseInt(startTime.getMonth()+1))):(parseInt(startTime.getMonth()+1)))+"-"+(startTime.getDate()<10?("0"+startTime.getDate()):startTime.getDate())
 		});
 	}
 	onCancel = () => {
 		body.style.overflowY = this.originbodyScrollY;
 		this.setState({
 			show: false,
-			startTime: now.getFullYear()+"-"+((parseInt(now.getMonth())+1)<10?"0"+(parseInt(now.getMonth())+1):(parseInt(now.getMonth())+1))+"-"+now.getDate()
+			startTime: now.getFullYear()+"-"+((parseInt(now.getMonth())+1)<10?"0"+(parseInt(now.getMonth())+1):(parseInt(now.getMonth())+1))+"-"+(now.getDate()<10?("0"+now.getDate()):now.getDate())
 		});
 	}
 	render() {
-		return ( < div className="choose-data">
-			{
-				this.renderBtn(this.state.startTime+"","Select Date", {
-					type: "one"
-				})
-			}
-			< Calendar {...this.state.config
-			}
-			enterDirection="horizontal"
-			visible = {
-				this.state.show
-			}
-			onCancel = {
-				this.onCancel
-			}
-			onConfirm = {
-				this.onConfirm
-			}
-			defaultDate = {
-				now
-			}
-			minDate = {
-				new Date(+now)
-			}
-			maxDate = {
-				new Date(+now +2592000000 )
-			}
-			/></div>
+		return ( 
+			<div className="choose-data">
+			{this.renderBtn(this.state.startTime+"","Select Date", {type: "one"})}
+				< Calendar {...this.state.config}
+				enterDirection="horizontal"
+				visible = {this.state.show}
+				onCancel = {this.onCancel}
+				onConfirm = {this.onConfirm}
+				defaultDate = {now}
+				minDate = {new Date(+now)}
+				maxDate = {new Date(+now +2592000000)}
+				/>
+			</div>
 		)
 	}
 }

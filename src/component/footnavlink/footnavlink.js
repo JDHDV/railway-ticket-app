@@ -1,21 +1,36 @@
 //底部导航
 import React from "react"
-import {Flex,Icon} from "antd-mobile"
+import {Flex,Accordion} from "antd-mobile"
 
 import "./footnavlink.css"
 
 class FootNavLink extends React.Component{
+	constructor(props){
+		super(props);
+		this.state={};
+	}
 	render(){
 		return(
-
-				<Flex className="foot-navlink">
-			     	<Flex.Item>发时 <Icon type="up" className="arrow-up"/></Flex.Item>
-			     	<Flex.Item>历时<Icon type="up" className="arrow-up"/></Flex.Item>
-			     	<Flex.Item>到时<Icon type="up" className="arrow-up"/></Flex.Item>
-			     	<Flex.Item>票价/余票</Flex.Item>
+			<div className="foot-navlink">
+			<Flex>
+			
+				<Flex.Item><Accordion defaultActiveKey="0" className="my-accordion" onChange={this.onChange}>
+			        <Accordion.Panel header="发时"></Accordion.Panel>
+			    </Accordion>
+			    </Flex.Item>
+			    <Flex.Item><Accordion defaultActiveKey="0" className="my-accordion" onChange={this.onChange}>
+			        <Accordion.Panel header="历时"></Accordion.Panel>
+			    </Accordion>
+			    </Flex.Item>
+			    <Flex.Item><Accordion defaultActiveKey="0" className="my-accordion" onChange={this.onChange}>
+			        <Accordion.Panel header="到时"></Accordion.Panel>
+			    </Accordion>
+			    </Flex.Item>
+			    <Flex.Item><span>票价</span>/<span>余票</span></Flex.Item>
 			    </Flex>
-		
+			</div>
 		)
 	}
 }
+
 export default FootNavLink

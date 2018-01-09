@@ -40,10 +40,10 @@ class Login extends React.Component{
 				<WhiteSpace />
 				<WingBlank>
 					<List>
-						<InputItem placeholder="用户名/账号" style={{borderRadius:"30px",background:"rgba(0,0,0,.1)",lineHeight:"44px",paddingLeft:"20px"}} onChange={(val)=>this.handleChange("user",val)} 
+						<InputItem  placeholder="用户名/账号" style={{borderRadius:"30px",background:"rgba(0,0,0,.1)",lineHeight:"44px",paddingLeft:"20px"}} onChange={(val)=>this.handleChange("user",val)} 
 	           />
 	           			<WhiteSpace size="lg"/>
-	         			<InputItem placeholder="密码" type="password"  style={{borderRadius:"30px",background:"rgba(0,0,0,.1)",lineHeight:"44px",paddingLeft:"20px"}} onChange={(val)=>this.handleChange("pwd",val)}
+	         			<InputItem  placeholder="密码" type="password"  style={{borderRadius:"30px",background:"rgba(0,0,0,.1)",lineHeight:"44px",paddingLeft:"20px"}} onChange={(val)=>this.handleChange("pwd",val)}
 	          />	       
 					</List>	
 					
