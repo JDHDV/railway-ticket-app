@@ -86,9 +86,9 @@
     box-sizing: border-box;
     -ms-flex: 1;
     flex: 1 1;
-    margin-left: 8px;
+    margin-left: 0px;
     min-width: 10px;
-    margin-top: -1px;
+    margin-top: 0px;
 }
 .ticket-search .am-tab-bar-bar .am-tab-bar-tab-image {
     width: 30px;
