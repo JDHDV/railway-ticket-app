@@ -43,7 +43,7 @@ class BusinessService extends React.Component{
        				</div>	
        				<WhiteSpace size="lg"/>
        				<div className="service-list">
-       					<img src={require("./img/car.jpg")} alt=""/>
+       					<img src={require("./img/idcard.jpg")} alt=""/>
        					<div className="service-icon">
 	       					<span className="icon-food">
 	       						<img src={require("./img/icon-idcard.png")} alt=""/>
