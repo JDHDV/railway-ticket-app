@@ -68,6 +68,11 @@ class AddressSearch extends React.Component{
 	}
 	//选择站点
 	
+	//缓动函数
+	animateY(obj,target,time){
+		
+	}
+	
 	render(){		
 		return(
 			<div className="address-search" ref="container" 

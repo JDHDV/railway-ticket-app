@@ -17,7 +17,7 @@ class ChooseData extends React.Component {
 			en: false,
 			show: false,
 			config: {},
-			startTime:now.getFullYear()+"-"+parseInt(now.getMonth())+1+"-"+(now.getDate()<10?("0"+now.getDate()):now.getDate())
+			startTime:now.getFullYear()+"-"+((now.getMonth()+1)<10?("0"+(now.getMonth()+1)):(now.getMonth()+1))+"-"+(now.getDate()<10?("0"+now.getDate()):now.getDate())
 		};
 	}	
 	renderBtn(zh, en,config = {},startTime) {
@@ -27,7 +27,7 @@ class ChooseData extends React.Component {
 				body.style.overflowY = "hidden";
 				this.setState({
 					show: true,
-					startTime:now.getFullYear()+"-"+((parseInt(now.getMonth())+1)<10?("0"+(parseInt(now.getMonth())+1)):(parseInt(now.getMonth())+1))+"-"+(now.getDate()<10?"0"+now.getDate():now.getDate()),
+					startTime:now.getFullYear()+"-"+((now.getMonth()+1)<10?("0"+(now.getMonth()+1)):(now.getMonth()+1))+"-"+(now.getDate()<10?"0"+now.getDate():now.getDate()),
 					config
 				});
 			}
@@ -40,14 +40,14 @@ class ChooseData extends React.Component {
 		body.style.overflowY = this.originbodyScrollY;
 		this.setState({
 			show: false,
-			startTime:startTime.getFullYear()+"-"+((parseInt(startTime.getMonth()+1))<10?("0"+(parseInt(startTime.getMonth()+1))):(parseInt(startTime.getMonth()+1)))+"-"+(startTime.getDate()<10?("0"+startTime.getDate()):startTime.getDate())
+			startTime:startTime.getFullYear()+"-"+((startTime.getMonth()+1)<10?("0"+(startTime.getMonth()+1)):(startTime.getMonth()+1))+"-"+(startTime.getDate()<10?("0"+startTime.getDate()):startTime.getDate())
 		});
 	}
 	onCancel = () => {
 		body.style.overflowY = this.originbodyScrollY;
 		this.setState({
 			show: false,
-			startTime: now.getFullYear()+"-"+((parseInt(now.getMonth())+1)<10?"0"+(parseInt(now.getMonth())+1):(parseInt(now.getMonth())+1))+"-"+(now.getDate()<10?("0"+now.getDate()):now.getDate())
+			startTime: now.getFullYear()+"-"+((now.getMonth()+1)<10?("0"+(now.getMonth()+1)):(now.getMonth()+1))+"-"+(now.getDate()<10?("0"+now.getDate()):now.getDate())
 		});
 	}
 	render() {
