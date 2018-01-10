@@ -11,6 +11,9 @@ i{
 	color: red;
 	margin-right: 10px;
 }
+.choose-seat-list p.num{
+	font-size: 12px;
+}
 .choose-seat-list .am-list-item .am-list-line .am-list-content {
     -ms-flex: 1;
     /* flex: 1 1; */
@@ -29,4 +32,69 @@ i{
 }
 .confirm-order .am-list-item .am-list-thumb:first-child {
     margin-right: 5px;
+}
+.confirm-order [class^=icon_]{
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	text-align: center;
+	line-height: 15px;
+	color:#fff;
+	padding:2px;
+	border-radius: 3px;
+	margin-right: 2px;
+}
+.confirm-order .icon_end{
+	background: green;
+} 
+.confirm-order .icon_start{
+	background: orange;
+}
+.confirm-order .icon_pass{
+	background: #108EE9;
+}
+.confirm-order .money-all{
+	color:red;
+	margin-left: 3px;
+}
+.confirm-order .text-color{
+	color:#108ee9;
+}
+.confirm-order .font{
+	font-weight:bold;
+	font-size:16px;
+}
+.confirm-order .long-time{
+	color:#666;
+}
+.submit-order .num{
+	color:#FF7F00;
+}
+.confirm-order .date{
+	height: 45px;
+	line-height: 45px;
+	padding-left:15px;
+}
+.confirm-order .cancel{
+	background: rgba(0,0,0,.2);
+}
+.confirm-order .am-flexbox .am-flexbox-item {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -ms-flex: 1;
+    flex: 1 1;
+    margin-left: 8px;
+    min-width: 10px;
+    margin-top:0px;
+}
+.confirm-order .am-flexbox {
+    text-align: center;
+    overflow: hidden;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.choose-ticket-info p{
+	/*margin: 10px 0px;*/
 }

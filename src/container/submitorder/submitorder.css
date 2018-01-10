@@ -1,5 +1,5 @@
 .submit-order p{
-	margin: 5px;
+	margin: 10px 0px;
 }
 .submit-order .am-flexbox {
     text-align: center;
@@ -9,17 +9,25 @@
     -ms-flex-align: center;
     align-items: center;
 }
-.submit-order .icon_end{
+.submit-order [class^=icon_]{
 	display: inline-block;
 	width: 15px;
 	height: 15px;
 	text-align: center;
 	line-height: 15px;
 	color:#fff;
-	background: green;
 	padding:2px;
-	border-radius: 2px;
+	border-radius: 3px;
 	margin-right: 2px;
+}
+.submit-order .icon_end{
+	background: green;
+} 
+.submit-order .icon_start{
+	background: orange;
+}
+.submit-order .icon_pass{
+	background: #108EE9;
 }
 .submit-order .money-all{
 	color:red;

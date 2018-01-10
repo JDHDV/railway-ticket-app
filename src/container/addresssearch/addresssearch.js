@@ -40,6 +40,7 @@ class AddressSearch extends React.Component{
 			sum=sumHeight+anchorIndex*40;
 		}
         this.refs.container.scrollTop=sum;
+        //this.animateY(this.refs.container,sum,300)
 	}
 	//滑动
 	handleScroll(e){
@@ -70,7 +71,10 @@ class AddressSearch extends React.Component{
 	
 	//缓动函数
 	animateY(obj,target,time){
-		
+		clearInterval(obj.timer);
+		obj.timer=setInterval(()=>{
+			
+		},time)
 	}
 	
 	render(){		

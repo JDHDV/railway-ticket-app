@@ -1,6 +1,6 @@
 //确认订单
 import React from "react"
-import {NavBar,List,WingBlank,Button,WhiteSpace,Flex} from "antd-mobile"
+import {NavBar,Icon,List,WingBlank,Button,WhiteSpace,Flex} from "antd-mobile"
 
 import "./confirmorder.css"
 
@@ -11,6 +11,7 @@ class ConfirmOrder extends React.Component{
 		
 		this.handleAddPeople=this.handleAddPeople.bind(this);
 		this.handleSubmit=this.handleSubmit.bind(this);
+		this.handleBack=this.handleBack.bind(this);
 		
 	}
 	handleAddPeople(){
@@ -19,37 +20,51 @@ class ConfirmOrder extends React.Component{
 	handleSubmit(){
 		this.props.history.push("./submitorder");
 	}
-	
+	handleBack(){
+		this.props.history.push("./searchresult");
+	}
 	render(){
 		return(
 			<div className="confirm-order">
-				<NavBar mode="dark">
+				<NavBar mode="dark" icon={<Icon type="left" onClick={this.handleBack}/>}>
 					确认订单
 				</NavBar>
 				
 				<NavBar className="data-nav" leftContent="前一天" rightContent="后一天">NavBar</NavBar>
 				
+				<Flex className="choose-ticket-info">
+					<Flex.Item>
+						<p className="font">广州南</p>
+						<p className="text-color"><span className="startTime">15:22</span>出发</p>
+						<p><span className="icon_start">始</span><span>深圳</span></p>
+					</Flex.Item>
+					<Flex.Item>
+						<p className="font text-color">K1208</p>
+						<p><img src={require("./img/arrow.png")} alt=""/></p>
+						<p className="long-time">14小时43分钟</p>
+					</Flex.Item>
+					<Flex.Item>
+						<p className="font">南宁东</p>
+							<p className="text-color"><span className="endTime">06:05</span>到达</p>
+							<p><span className="icon_end">终</span><span>昆明</span></p>
+					</Flex.Item>
+				</Flex>
+				
 				<Flex className="choose-seat-list">
 					<Flex.Item>
-						<List>
-							<List.Item>商务</List.Item>
-							<List.Item>2张</List.Item>
-							<List.Item>￥11</List.Item>
-						</List>
+						<p>商务</p>
+						<p className="num">2张</p>
+						<p>￥<span>11</span></p>
 					</Flex.Item>
 					<Flex.Item>
-						<List>
-							<List.Item>一等</List.Item>
-							<List.Item>2张</List.Item>
-							<List.Item>￥11</List.Item>
-						</List>
+						<p>一等</p>
+						<p className="num">2张</p>
+						<p>￥<span>11</span></p>
 					</Flex.Item>
 					<Flex.Item>
-						<List>
-							<List.Item>二等</List.Item>
-							<List.Item>2张</List.Item>
-							<List.Item>￥11</List.Item>
-						</List>
+					    <p>二等</p>
+						<p className="num">2张</p>
+						<p>￥<span>11</span></p>
 					</Flex.Item>
 				</Flex>
 				

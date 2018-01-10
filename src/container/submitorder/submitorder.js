@@ -35,7 +35,7 @@ class SubmitOrder extends React.Component{
 							<Flex.Item>
 							   	<p className="font">广州南</p>
 							  	<p className="text-color"><span className="startTime">15:22</span>出发</p>
-								<p style={{visibility: "hidden"}}>1111</p>
+								<p><span className="icon_start">始</span><span>深圳</span></p>
 							</Flex.Item>
 							<Flex.Item>
 								<p className="font text-color">K1208</p>
