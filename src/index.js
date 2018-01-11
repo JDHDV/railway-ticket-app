@@ -25,6 +25,7 @@ import SubmitOrder from "./container/submitorder/submitorder"
 import TicketSearch from "./container/ticketsearch/ticketsearch"
 import SearchResult from "./container/searchresult/searchresult"
 import ConfirmOrder from "./container/confirmorder/confirmorder"
+import AboutPerson from "./container/aboutperson/aboutperson"
 import AddressSearch from "./container/addresssearch/addresssearch"
 import BusinessService from "./container/businessservice/businessservice"
 
@@ -51,6 +52,7 @@ ReactDom.render(
 						<Route path="/addperson" component={AddPerson}/>
 						<Route path="/addpeople" component={AddPeople}/>
 						<Route path="/searchbook" component={SearchBook}/>
+						<Route path="/aboutperson" component={AboutPerson}/>
 						<Route path="/submitorder" component={SubmitOrder}/>
 						<Route path="/confirmorder" component={ConfirmOrder}/>
 						<Route path="/searchresult" component={SearchResult}/>

@@ -14,10 +14,14 @@ class AboutMe extends React.Component{
 	constructor(props){
 		super(props);
 		this.LoginOut=this.LoginOut.bind(this);
+		this.handleClick=this.handleClick.bind(this);
 	}
 	LoginOut(){
 		browserCookie.erase("userid");
 		this.props.loginOutSubmit()
+	}
+	handleClick(){
+		this.props.history.push("./aboutperson");
 	}
 	render(){
 		const userInfo1=[{
@@ -37,7 +41,7 @@ class AboutMe extends React.Component{
 				<NavBar mode="dark" className="about-me-header">关于我的</NavBar>
 				<div className="about-me-container">
 					<List>
-						<List.Item arrow="horizontal">{this.props.name}</List.Item>
+						<List.Item arrow="horizontal" onClick={this.handleClick}>{this.props.name}</List.Item>
 						{userInfo1.map(v=>(<List.Item arrow="horizontal" key={v.text}>{v.text}</List.Item>))}
 						
 					</List>

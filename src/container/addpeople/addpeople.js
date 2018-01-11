@@ -73,7 +73,7 @@ class AddPeople extends React.Component{
 	  if (!/iPhone|iPod|iPad/i.test(navigator.userAgent)) {
 	    return;
 	  }
-	  const pNode = closest(e.target, '.am-modal-content');
+	  const pNode = closest(e.target, ".am-modal-content");
 	  if (!pNode) {
 	    e.preventDefault();
 	  }

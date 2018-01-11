@@ -16,8 +16,8 @@ class AddPerson extends React.Component{
 	}
 	render(){
 		return(
-			<div>
-				<NavBar mode="dark" icon={<Icon type="left"/>} rightContent="完成">添加乘客</NavBar>
+			<div className="add-person">
+				<NavBar mode="dark" icon={<Icon type="left"/>} rightContent="添加">常用联系人</NavBar>
 				<SearchBar placeholder="搜索" maxLength={8} showCancelButton="true" 
 				cancelText={<img src={require("./img/add.png")} alt="" className="icon_add" onClick={this.handleAddPeron}/>}/>
 				<List>
