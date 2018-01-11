@@ -49,8 +49,8 @@
 }
 
 .ticket-search .am-list .am-list-item.am-checkbox-item .am-list-thumb .am-checkbox-inner {
-	left: 60px;
-	top: 10px;
+	left: 66px;
+	top: 14px;
 }
 
 .seat {
@@ -78,7 +78,7 @@
     overflow: hidden;
 }
 .ticket-search .am-list-item .am-list-thumb:first-child {
-    margin-right: 0px;
+    margin-right: -25px;
     margin-top: -4px;
 }
 .ticket-search .am-flexbox .am-flexbox-item {
@@ -104,4 +104,18 @@
     height: 238px;
     overflow: hidden;
     width: 100%;
+}
+.ticket-search .am-checkbox-inner {
+    position: absolute;
+    right: 10px;
+    top: 2px;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
