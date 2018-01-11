@@ -17,7 +17,7 @@ class AboutPerson extends React.Component{
 		this.props.history.push("./aboutme");
 	}
 	handleClick(){
-		this.props.history.push("./addpeople");
+		this.props.history.push("./addperson");
 	}
 	render(){
 		return this.props.user?(
