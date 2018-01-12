@@ -1,14 +1,15 @@
-import axios from "axios"
+﻿import axios from "axios"
 
 const SEARCH_SUCCESS="查询成功";
 const ERROE_MSG="错误信息";
+const SELECTSTATION="SELECTSTATION";
 
 const initState={
 	msg:"",
 	train_no:"",
 	train_type:"",
-	start_station: "",
-	end_station:"",
+	start_station: "南宁东",
+	end_station:"广州南",
 	start_time:"",
 	end_time:"",
 	run_time:"",
@@ -25,14 +26,26 @@ function errorMsg(data){
 	return {type:ERROE_MSG,data}
 }
 
+function selectS(data){
+	return {type:SELECTSTATION,data};
+}
+
 export function ticket(state=initState,action){
 	switch(action.type){
 		case SEARCH_SUCCESS:
 			return {...state,msg:""};
 		case ERROE_MSG:
 			return {...state,msg:action.msg};
+		case SELECTSTATION:
+			return {...state,...action.data};
 		default:
 			return state;
+	}
+}
+
+export function selectStartStationRedux(v){
+	return dispatch=>{
+		dispatch(selectS(v));
 	}
 }
 

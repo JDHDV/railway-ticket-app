@@ -1,11 +1,21 @@
 //车站选择
-import React from "react"
-import {NavBar,Icon,SearchBar,WhiteSpace,List} from "antd-mobile"
+import React from "react";
+import {NavBar,Icon,SearchBar,WhiteSpace,List} from "antd-mobile";
+import {connect} from 'react-redux';
+import {selectStartStationRedux} from '../../redux/ticket.redux.js';
 
-import "./addresssearch.css"
+import "./addresssearch.css";
 
 const addressData=require("./data/addressData.json");
 
+@connect(
+    state=>{
+		return {
+			state:state.ticket
+		}
+	},
+    {selectStartStationRedux}
+)
 class AddressSearch extends React.Component{
 	constructor(props){
 		super(props);
@@ -19,9 +29,16 @@ class AddressSearch extends React.Component{
 		this.onShortcutTouchStart=this.onShortcutTouchStart.bind(this);
 		this.handleScroll=this.handleScroll.bind(this);
 		this.handleChange=this.handleChange.bind(this);
+		this.selectStation=this.selectStation.bind(this);
 	}
 	//返回箭头
 	handleBack(){
+		if(this.props.state.start_station==="start"){
+			this.props.selectStartStationRedux({start_station:"南宁东"});
+		}
+		if(this.props.state.end_station==="end"){
+			this.props.selectStartStationRedux({end_station:"广州南"});
+		}
 		this.props.history.push("./ticketsearch");
 	}
 	//点击跳转到相应分组
@@ -68,7 +85,16 @@ class AddressSearch extends React.Component{
 		console.log(val);
 	}
 	//选择站点
-	
+	selectStation(v){
+		if(this.props.state.start_station==="start"){
+			this.props.selectStartStationRedux({start_station:v});
+			this.props.history.push("./ticketsearch");
+		}
+		if(this.props.state.end_station==="end"){
+			this.props.selectStartStationRedux({end_station:v});
+			this.props.history.push("./ticketsearch");
+		}
+	}
 	//缓动函数
 	animateY(obj,target,time){
 		clearInterval(obj.timer);
@@ -95,7 +121,7 @@ class AddressSearch extends React.Component{
 					</div>
 					<div className="station-list">
 						{addressData.map(val=>(<List renderHeader={val.title}  key={val.title} ref={(list)=>{this.state.listGroup.push(list);}}>
-							{val.items.map(v=>(<List.Item key={v} onClick={()=>{console.log(v)}}>{v}</List.Item>))}
+							{val.items.map(v=>(<List.Item key={v} onClick={()=>{this.selectStation(v)}}>{v}</List.Item>))}
 						</List>))}
 					</div>
 				</div>

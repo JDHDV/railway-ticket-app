@@ -3,7 +3,7 @@ import React from "react"
 import {connect} from "react-redux"
 import {Switch,Route} from "react-router-dom"
 
-import {ticketSearch} from "../../redux/ticket.redux"
+import {ticketSearch,selectStartStationRedux} from "../../redux/ticket.redux"
 import {NavBar,List,WingBlank,WhiteSpace,Button,Flex,Checkbox} from "antd-mobile"
 
 import "./ticketsearch.css"
@@ -17,7 +17,11 @@ import ChooseData from "../../component/choosedata/choosedata"
 import CarCategory from "../../component/carcategory/carcategory"
 import IconNavLink from "../../component/iconnavlink/iconnavlink"
 		
-@connect(state=>{return state.ticket},{ticketSearch})
+@connect(state=>{
+	return {
+		state:state.ticket
+	}
+},{ticketSearch,selectStartStationRedux})
 class TicketSearch extends React.Component{
 	constructor(props){
 		super(props);
@@ -42,8 +46,14 @@ class TicketSearch extends React.Component{
 		this.props.history.push("./searchresult");
  //       this.props.ticketSearch(this.state);
 	}
-	handleAddress(){
-        this.props.history.push("./addresssearch")
+	handleAddress(v){
+        this.props.history.push("./addresssearch");
+		if(v==="start"){
+			this.props.selectStartStationRedux({start_station:"start"});
+		}
+		if(v==="end"){
+			this.props.selectStartStationRedux({end_station:"end"});
+		}
 	}
 	handleChat(){
 		this.props.history.push("./chat");
@@ -128,9 +138,9 @@ class TicketSearch extends React.Component{
 				<WingBlank>
 					<List >
 						<Flex className="address-list">
-							<Flex.Item onClick={this.handleAddress}>{this.state.start_station}</Flex.Item>
+							<Flex.Item onClick={()=>{this.handleAddress("start")}}>{this.props.state.start_station}</Flex.Item>
 							<Flex.Item><img src={require("./img/change.png")} alt="" className="icon_change" onClick={this.handleChange}/></Flex.Item>
-							<Flex.Item onClick={this.handleAddress}>{this.state.end_station}</Flex.Item>
+							<Flex.Item onClick={()=>{this.handleAddress("end")}}>{this.props.state.end_station}</Flex.Item>
 						</Flex>
 					</List>
 					<List className="time-list">
