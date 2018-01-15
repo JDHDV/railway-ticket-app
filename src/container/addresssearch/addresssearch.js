@@ -34,6 +34,7 @@ class AddressSearch extends React.Component{
 	//返回箭头
 	handleBack(){
 		if(this.props.state.start_station==="start"){
+			
 			this.props.selectStartStationRedux({start_station:"南宁东"});
 		}
 		if(this.props.state.end_station==="end"){
@@ -56,8 +57,26 @@ class AddressSearch extends React.Component{
 			}
 			sum=sumHeight+anchorIndex*40;
 		}
-        this.refs.container.scrollTop=sum;
-        //this.animateY(this.refs.container,sum,300)
+		//this.refs.container.scrollTop=sum;
+		let realSum=250;
+		let timer=setInterval(()=>{
+			if(this.refs.container.scrollTop-sum<=-realSum){
+				this.refs.container.scrollTop=this.refs.container.scrollTop+realSum;
+			}else if(this.refs.container.scrollTop-sum>=-realSum&&this.refs.container.scrollTop-sum<=0){
+				this.refs.container.scrollTop=sum;
+				clearInterval(timer);
+			}
+			if(this.refs.container.scrollTop-sum>=realSum){
+				this.refs.container.scrollTop=this.refs.container.scrollTop-realSum;
+			}else if(this.refs.container.scrollTop-sum<=realSum&&this.refs.container.scrollTop-sum>=0){
+				this.refs.container.scrollTop=sum;
+				clearInterval(timer);
+			}
+			if(this.refs.container.scrollTop===sum){
+				clearInterval(timer);
+			}
+		},1);
+        
 	}
 	//滑动
 	handleScroll(e){
@@ -86,7 +105,11 @@ class AddressSearch extends React.Component{
 	}
 	//选择站点
 	selectStation(v){
+		console.log(v);
+		console.log(this.props.state.start_station);
+		
 		if(this.props.state.start_station==="start"){
+			
 			this.props.selectStartStationRedux({start_station:v});
 			this.props.history.push("./ticketsearch");
 		}
@@ -94,6 +117,7 @@ class AddressSearch extends React.Component{
 			this.props.selectStartStationRedux({end_station:v});
 			this.props.history.push("./ticketsearch");
 		}
+		
 	}
 	//缓动函数
 	animateY(obj,target,time){
