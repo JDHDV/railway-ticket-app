@@ -57,29 +57,10 @@ class AddressSearch extends React.Component{
 			}
 			sum=sumHeight+anchorIndex*40;
 		}
-		//this.refs.container.scrollTop=sum;
-		let realSum=250;
-		let timer=setInterval(()=>{
-			if(this.refs.container.scrollTop-sum<=-realSum){
-				this.refs.container.scrollTop=this.refs.container.scrollTop+realSum;
-			}else if(this.refs.container.scrollTop-sum>=-realSum&&this.refs.container.scrollTop-sum<=0){
-				this.refs.container.scrollTop=sum;
-				clearInterval(timer);
-			}
-			if(this.refs.container.scrollTop-sum>=realSum){
-				this.refs.container.scrollTop=this.refs.container.scrollTop-realSum;
-			}else if(this.refs.container.scrollTop-sum<=realSum&&this.refs.container.scrollTop-sum>=0){
-				this.refs.container.scrollTop=sum;
-				clearInterval(timer);
-			}
-			if(this.refs.container.scrollTop===sum){
-				clearInterval(timer);
-			}
-		},1);
-        
+		this.refs.container.scrollTop=sum;
 	}
 	//滑动
-	handleScroll(e){
+	handleScroll(){
 	    let clientHeight = this.refs.container.clientHeight; //可视区域高度
 	    let scrollTop  = this.refs.container.scrollTop;  //滚动条滚动高度
 	    let scrollHeight = this.refs.container.scrollHeight; //滚动内容高度
@@ -105,11 +86,7 @@ class AddressSearch extends React.Component{
 	}
 	//选择站点
 	selectStation(v){
-		console.log(v);
-		console.log(this.props.state.start_station);
-		
 		if(this.props.state.start_station==="start"){
-			
 			this.props.selectStartStationRedux({start_station:v});
 			this.props.history.push("./ticketsearch");
 		}
@@ -119,14 +96,6 @@ class AddressSearch extends React.Component{
 		}
 		
 	}
-	//缓动函数
-	animateY(obj,target,time){
-		clearInterval(obj.timer);
-		obj.timer=setInterval(()=>{
-			
-		},time)
-	}
-	
 	render(){		
 		return(
 			<div className="address-search" ref="container" 
