@@ -1,6 +1,8 @@
 const express=require("express");
 const Router=express.Router();
 const User=require("./model").getModel("user");
+const Ticket=require("./model").getModel("ticket");
+
 const utils=require("utility");
 
 Router.get("/list",(req,res)=>{

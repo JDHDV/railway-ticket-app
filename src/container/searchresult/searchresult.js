@@ -25,24 +25,29 @@ class SearchResult extends React.Component{
 		this.handleBack=this.handleBack.bind(this);
 		this.handleTouchEnd=this.handleTouchEnd.bind(this);
 	}
+	
 	state = {
 	    visible: false,
 	    selected:""
-	};
+	}
+	
 	onSelect = (opt) => {
 	    this.setState({
 		    visible:false,
 		    selected: opt.props.value
 	    });
-	};
+	}
+	
 	handleVisibleChange = (visible) => {
 	    this.setState({
 	    	visible
 	    });
-	};
+	}
+	
   	handleBack(){
   		this.props.history.push("./ticketsearch");
   	}
+  	
   	handleTouchEnd(){
 		this.props.history.push("./confirmorder");
   	}
@@ -98,7 +103,7 @@ class SearchResult extends React.Component{
 				     					G13
 				     				</Flex.Item>
 				     				<Flex.Item>
-				     					<List.Item multipleLine onClick={() => {}}>北京西 <List.Item.Brief>13:45</List.Item.Brief></List.Item>
+				     					<List.Item multipleLine onClick={() => {}}>北京西<List.Item.Brief>13:45</List.Item.Brief></List.Item>
 				     				</Flex.Item>
 				     				<Flex.Item className="result-info-list">
 										<p><img src={require("./img/ticket.png")} alt=""/></p>

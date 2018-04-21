@@ -20,24 +20,23 @@ const models={
 		"isStudentMsg":{"type":String}
 	},
 	//车票表
-//	ticket:{
-//		"train_no":{"type":String,"require":true},
-//		"train_type":{"type":String,"require":true},
-//		"start_station": {"type":String,"require":true},
-//		"start_station_type":{"type":String,"require":true},
-//		"end_station": {"type":String,"require":true},
-//		"end_station_type":{"type":String,"require":true},
-//		"start_time":{"type":String,"require":true},
-//		"end_time":{"type":String,"require":true},
-//		"run_time":{"type":String,"require":true},
-//		"price_list": [
-//			{
-//				"price_type":{"type":String,"require":true},
-//				"num":{"type":String,"require":true},
-//				"price":{"type":String,"require":true}
-//			}
-//		]
-//	},
+	ticket:{
+		"train_no":{"type":String,"require":true},
+		"train_type":{"type":String,"require":true},
+		"start_station": {"type":String,"require":true},
+		"start_station_type":{"type":String,"require":true},
+		"end_station": {"type":String,"require":true},
+		"end_station_type":{"type":String,"require":true},
+		"start_time":{"type":String,"require":true},
+		"end_time":{"type":String,"require":true},
+		"run_time":{"type":String,"require":true},
+		"price_list": [
+			{
+				"price_type":{"type":String,"require":true},
+				"price":{"type":String,"require":true}
+			}
+		]
+	},
 	//客服聊天消息表
 	chat:{
 		

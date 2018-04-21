@@ -5,6 +5,7 @@ const AUTH_SUCCESS="操作成功";
 const ERROR_MSG="错误提示";
 const LOADDATE="加载信息";
 const LOGIN_OUT="退出登录";
+const IS_STUDENT="是否购买学生票"
 
 //redirectTo：跳转记录
 //mag:提示信息
@@ -42,7 +43,9 @@ function authSuccess(data){
 function errorMsg(msg){
 	return {type:ERROR_MSG,msg}
 }
-
+function isStudent(data){
+	return {type:IS_STUDENT,data}
+}
 export function loginOutSubmit(){
 	return {type:LOGIN_OUT};
 }
@@ -61,6 +64,8 @@ export function user(state=initState,action){
 			return {...state,msg:"",...action.data};
 		case LOGIN_OUT:
 			return {...initState,redirectTo:"/login"};
+		case IS_STUDENT:
+			return {...state,msg:"",...action.data}
 		default:
 			return state;
 	}

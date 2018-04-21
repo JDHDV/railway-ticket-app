@@ -35,16 +35,21 @@ class TicketSearch extends React.Component{
 			run_time:"",
 			start_station_type:"",
 			end_station_type:"",
-			price_list: []
+			price_list: [],
+			isStudent:true
 		}
+		
 		this.handleSearch=this.handleSearch.bind(this);
 		this.handleAddress=this.handleAddress.bind(this);
 		this.handleChat=this.handleChat.bind(this);
 		this.handleChange=this.handleChange.bind(this);
+		this.handleChangeStu=this.handleChangeStu.bind(this);
 	}
 	handleSearch(){
 		this.props.history.push("./searchresult");
- //       this.props.ticketSearch(this.state);
+		console.log("start=>"+this.props.state.start_station);
+		console.log("end=>"+this.props.state.end_station);
+		console.log("time=>"+this.props.state.startTime);
 	}
 	handleAddress(v){
         this.props.history.push("./addresssearch");
@@ -59,8 +64,16 @@ class TicketSearch extends React.Component{
 		this.props.history.push("./chat");
 	}
 	handleChange(){
-		this.setState({start_station:this.state.end_station,end_station:this.state.start_station});
+		this.setState({
+			start_station:this.state.end_station,
+			end_station:this.state.start_station
+		});
 	}
+	handleChangeStu(){
+		this.setState({
+			isStudent:!this.state.isStudent
+		})
+	}	
 	render(){
 		const iconNavList=[{
 			path:"/clock",
@@ -121,9 +134,7 @@ class TicketSearch extends React.Component{
 			value:"硬座"
 		}];
 		const talkUrl=require("./img/talk.png");
-		
 		return(
-			
 			<div className="ticket-search">
 				<NavBar mode="dark" key={talkUrl} rightContent={[
       				<List.Item thumb={talkUrl} key="2" className="icon-talk" style={{background:"transparent"}} onClick={this.handleChat}/>]}>
@@ -149,7 +160,7 @@ class TicketSearch extends React.Component{
 							<Flex.Item>出发时间</Flex.Item>
 						</Flex>
 						<Flex>
-							<Flex.Item><ChooseData /></Flex.Item>
+							<Flex.Item><ChooseData/></Flex.Item>
 							<Flex.Item><ChooseTime data={timeList}/></Flex.Item>
 						</Flex>
 					</List>
@@ -157,7 +168,7 @@ class TicketSearch extends React.Component{
 						<div className="seat">席别</div>						
 						<Flex>
 							<Flex.Item><ChooseSeat data={seatList}/></Flex.Item>
-							<Flex.Item><Checkbox.CheckboxItem onChange={()=>{console.log(111)}}>学生</Checkbox.CheckboxItem></Flex.Item>
+							<Flex.Item><Checkbox.CheckboxItem checked={!this.state.isStudent} onChange={this.handleChangeStu}>学生</Checkbox.CheckboxItem></Flex.Item>
 						</Flex>
 					</List>
 					
@@ -166,7 +177,7 @@ class TicketSearch extends React.Component{
 					<CarCategory/>
 					
 					<WhiteSpace size="lg"/>
-					
+					{this.props.msg?(<p className="error-msg">{this.props.msg}</p>):null}
 					<Button type="primary" onClick={this.handleSearch}>查询</Button>
 				</WingBlank>
 				<NavLink/>

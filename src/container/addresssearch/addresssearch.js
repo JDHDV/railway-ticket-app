@@ -34,7 +34,6 @@ class AddressSearch extends React.Component{
 	//返回箭头
 	handleBack(){
 		if(this.props.state.start_station==="start"){
-			
 			this.props.selectStartStationRedux({start_station:"南宁东"});
 		}
 		if(this.props.state.end_station==="end"){

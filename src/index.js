@@ -7,6 +7,7 @@ import {BrowserRouter,Route,Switch} from "react-router-dom"
 
 import "./config"
 import "./index.css"
+import "./animate.min.css"
 import reducer from "./reducer"
 
 import Chat from "./container/chat/chat"
