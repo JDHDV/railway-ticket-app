@@ -51,6 +51,7 @@ class ChooseData extends React.Component {
 		});
 	}
 	render() {
+		console.log("日期=>"+this.state.startTime);
 		return ( 
 			<div className="choose-data">
 			{this.renderBtn(this.state.startTime+"","Select Date", {type: "one"})}

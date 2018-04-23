@@ -160,7 +160,7 @@ class TicketSearch extends React.Component{
 							<Flex.Item>出发时间</Flex.Item>
 						</Flex>
 						<Flex>
-							<Flex.Item><ChooseData/></Flex.Item>
+							<Flex.Item><ChooseData data={this.props.startTime}/></Flex.Item>
 							<Flex.Item><ChooseTime data={timeList}/></Flex.Item>
 						</Flex>
 					</List>
@@ -181,9 +181,24 @@ class TicketSearch extends React.Component{
 					<Button type="primary" onClick={this.handleSearch}>查询</Button>
 				</WingBlank>
 				<NavLink/>
+				
+				
 			</div>
 		)
 	}
 }
 
 export default TicketSearch
+
+//{!this.state.isStudent?(<div className="isStu-mask">
+//				   <div className="mask-container">
+//				      <div className="mask-content">
+//				      	<p>购买学生票?</p>
+//				      	<p>若优惠卡次数已使用结束,是否同意补全票价?</p>
+//				      </div>
+//				      <div className="mask-btn">
+//					      <Button type="primary" inline onClick={this.handleChangeStu}>取消</Button>
+//					      <Button type="primary" inline >确定</Button>
+//				      </div>
+//				   </div>
+//				</div>):null}

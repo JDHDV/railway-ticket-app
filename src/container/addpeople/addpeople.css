@@ -95,5 +95,16 @@
 	width: 100%;
 	padding-top: 45px;
 	position: relative;
-	
+}
+
+.addpeople .am-radio-inner {
+    position: absolute;
+    right: -10px;
+    width: 15px;
+    height: 15px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
 }

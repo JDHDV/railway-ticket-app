@@ -10,15 +10,18 @@ class AddPerson extends React.Component{
 		super(props);
 		this.state={};
 		this.handleAddPeron=this.handleAddPeron.bind(this);
-		
+		this.handleBack=this.handleBack.bind(this);
 	}
 	handleAddPeron(){
 		this.props.history.push("./addpeople");
 	}
+	handleBack(){
+		this.props.history.push(window.history.back(-1));
+	}
 	render(){
 		return(
 			<div className="add-person">
-				<NavBar mode="dark" icon={<Icon type="left"/>} rightContent={<span onClick={this.handleAddPeron}>添加</span>}>常用联系人</NavBar>
+				<NavBar mode="dark" icon={<Icon type="left" onClick={this.handleBack}/>} rightContent={<span onClick={this.handleAddPeron}>添加</span>}>常用联系人</NavBar>
 				<SearchBar placeholder="搜索" maxLength={8} showCancelButton="true" 
 				cancelText={<img src={require("./img/add.png")} alt="" className="icon_add" onClick={this.handleAddPeron}/>}/>
 				<List>

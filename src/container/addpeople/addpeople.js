@@ -51,10 +51,10 @@ class AddPeople extends React.Component{
 		})
 	}	
 	handleBack(){
-		this.props.history.push("./confirmorder");
+		this.props.history.push(window.history.back(-1));
 	}
 	handleFinish(){
-		this.props.history.push("./addperson");
+		this.props.history.push(window.history.back(-1));
 	}
 	onChange = (value) => {
 	    this.setState({
@@ -84,6 +84,7 @@ class AddPeople extends React.Component{
 	}
 
 	render(){
+		
 		return(
 			<div className="addpeople">
 				<div className="navbar">

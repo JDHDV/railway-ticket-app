@@ -20,7 +20,8 @@ class SearchResult extends React.Component{
 			run_time:"",
 			start_station_type:"",
 			end_station_type:"",
-			price_list: []
+			price_list: [],
+			
 		}
 		this.handleBack=this.handleBack.bind(this);
 		this.handleTouchEnd=this.handleTouchEnd.bind(this);
@@ -53,6 +54,7 @@ class SearchResult extends React.Component{
   	}
   	
 	render(){
+		
 		return(
 			<div className="search-result">
 				<div>

@@ -35,6 +35,11 @@ class Login extends React.Component{
 			<div className="login-container">
 				{this.props.redirectTo&&this.props.redirectTo!=="/login"?<Redirect to={this.props.redirectTo}/>:null}
 				<NavBar mode="dark">登录</NavBar>
+				<WhiteSpace />
+				<WhiteSpace />
+				<WhiteSpace />
+				<WhiteSpace />
+				<WhiteSpace />
 				<Logo/>
 				<p>欢迎登录</p>
 				<WhiteSpace />
