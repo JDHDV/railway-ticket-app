@@ -2,7 +2,7 @@
 
 const SEARCH_SUCCESS="查询成功";
 const ERROE_MSG="错误信息";
-const SELECTSTATION="SELECTSTATION";
+const SELECT_STATION="选择站点";
 
 const initState={
 	msg:"",
@@ -27,7 +27,7 @@ function errorMsg(data){
 }
 
 function selectS(data){
-	return {type:SELECTSTATION,data};
+	return {type:SELECT_STATION,data};
 }
 
 export function ticket(state=initState,action){
@@ -36,7 +36,7 @@ export function ticket(state=initState,action){
 			return {...state,...action.data,msg:action.msg};
 		case ERROE_MSG:
 			return {...state,...action.data,msg:action.msg};
-		case SELECTSTATION:
+		case SELECT_STATION:
 			return {...state,...action.data};
 		default:
 			return state;

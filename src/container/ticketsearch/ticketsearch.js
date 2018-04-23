@@ -16,7 +16,7 @@ import ChooseTime from "../../component/choosetime/choosetime"
 import ChooseData from "../../component/choosedata/choosedata"
 import CarCategory from "../../component/carcategory/carcategory"
 import IconNavLink from "../../component/iconnavlink/iconnavlink"
-		
+
 @connect(state=>{
 	return {
 		state:state.ticket
@@ -44,12 +44,13 @@ class TicketSearch extends React.Component{
 		this.handleChat=this.handleChat.bind(this);
 		this.handleChange=this.handleChange.bind(this);
 		this.handleChangeStu=this.handleChangeStu.bind(this);
+		this.handleDate=this.handleDate.bind(this);
 	}
+	handleDate(params){
+	    console.log(params);
+    }
 	handleSearch(){
 		this.props.history.push("./searchresult");
-		console.log("start=>"+this.props.state.start_station);
-		console.log("end=>"+this.props.state.end_station);
-		console.log("time=>"+this.props.state.startTime);
 	}
 	handleAddress(v){
         this.props.history.push("./addresssearch");
@@ -100,44 +101,11 @@ class TicketSearch extends React.Component{
 			component:null,
 			hide:this.props.type==="bookcar"
 		}];
-		const timeList=[{
-		    value: "00:00-24:00",
-	    },
-	    {
-	      	value: "00:00-06:00",
-	    },{
-	     	value: "06:00-12:00",
-	    },{
-	      	value: "12:00-18:00",
-	    },{
-	     	value: "18:00-24:00",
-	    }];
-		const seatList=[{
-			value:"不限"
-		},{
-			value:"商务座"
-		},{
-			value:"特等座"
-		},{
-			value:"一等座"
-		},{
-			value:"二等座"
-		},{
-			value:"高级软卧"
-		},{
-			value:"软卧"
-		},{
-			value:"硬卧"
-		},{
-			value:"软座"
-		},{
-			value:"硬座"
-		}];
-		const talkUrl=require("./img/talk.png");
+ 
 		return(
 			<div className="ticket-search">
-				<NavBar mode="dark" key={talkUrl} rightContent={[
-      				<List.Item thumb={talkUrl} key="2" className="icon-talk" style={{background:"transparent"}} onClick={this.handleChat}/>]}>
+				<NavBar mode="dark" key={require("./img/talk.png")} rightContent={[
+      				<List.Item thumb={require("./img/talk.png")} key="2" className="icon-talk" style={{background:"transparent"}} onClick={this.handleChat}/>]}>
 						车票预订
 				</NavBar>
 				<Switch>{
@@ -150,7 +118,7 @@ class TicketSearch extends React.Component{
 					<List >
 						<Flex className="address-list">
 							<Flex.Item onClick={()=>{this.handleAddress("start")}}>{this.props.state.start_station}</Flex.Item>
-							<Flex.Item><img src={require("./img/change.png")} alt="" className="icon_change" onClick={this.handleChange}/></Flex.Item>
+							<Flex.Item  onClick={this.handleChange}><img src={require("./img/change.png")} alt="" className="icon_change"/></Flex.Item>
 							<Flex.Item onClick={()=>{this.handleAddress("end")}}>{this.props.state.end_station}</Flex.Item>
 						</Flex>
 					</List>
@@ -160,14 +128,14 @@ class TicketSearch extends React.Component{
 							<Flex.Item>出发时间</Flex.Item>
 						</Flex>
 						<Flex>
-							<Flex.Item><ChooseData data={this.props.startTime}/></Flex.Item>
-							<Flex.Item><ChooseTime data={timeList}/></Flex.Item>
+							<Flex.Item><ChooseData data={this.handleDate}/></Flex.Item>
+							<Flex.Item><ChooseTime/></Flex.Item>
 						</Flex>
 					</List>
 					<List className="time-list">
 						<div className="seat">席别</div>						
 						<Flex>
-							<Flex.Item><ChooseSeat data={seatList}/></Flex.Item>
+							<Flex.Item><ChooseSeat/></Flex.Item>
 							<Flex.Item><Checkbox.CheckboxItem checked={!this.state.isStudent} onChange={this.handleChangeStu}>学生</Checkbox.CheckboxItem></Flex.Item>
 						</Flex>
 					</List>

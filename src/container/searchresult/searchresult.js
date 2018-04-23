@@ -1,5 +1,7 @@
 //查询结果页
 import React from "react"
+import {connect} from "react-redux"
+import {ticketSearch,selectStartStationRedux} from "../../redux/ticket.redux"
 import {NavBar,Icon,Popover,Flex,List,Accordion,WhiteSpace} from "antd-mobile"
 
 import "./searchresult.css"
@@ -7,13 +9,18 @@ import FootNavLink from "../../component/footnavlink/footnavlink"
 
 const Item = Popover.Item;
 
+@connect(state=>{
+	return {
+		state:state.ticket
+	}
+},{ticketSearch,selectStartStationRedux})
 class SearchResult extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={
 			train_no:"",
 			train_type:"",
-			start_station: "",
+			start_station:"",
 			end_station:"",
 			start_time:"",
 			end_time:"",
@@ -52,49 +59,50 @@ class SearchResult extends React.Component{
   	handleTouchEnd(){
 		this.props.history.push("./confirmorder");
   	}
-  	
+  
 	render(){
-		
+		console.log(this.props.startTime);
 		return(
 			<div className="search-result">
 				<div>
 				    <NavBar  mode="dark"  icon={<Icon type="left" onClick={this.handleBack}/>}
 		       			rightContent={
 		          			<Popover  overlayClassName="fortest"
-		            		visible={this.state.visible}
-		            		overlay={[
-		             				 (<Item key="4" value="刷新" icon={(<img src={require("./img/load.png")} alt="" className="icon-refresh"/>)} data-seed="logId">刷新</Item>),
-		              (<Item key="5" value="special" icon={(<img src={require("./img/shaixuan.png")} alt=""/>)} style={{ whiteSpace:"nowrap" }}>筛选</Item>),
-		              (<Item key="6" value="button ct" icon={(<img src={require("./img/down.png")} alt=""/>)}>
-		                <span style={{ marginRight: 5 }}>保存本地</span>
-		              </Item>),(<Item key="7" value="button ct" icon={(<img src={require("./img/share.png")} alt=""/>)}>
-		                <span style={{ marginRight: 5 }}>分享好友</span>
-		              </Item>)
-		            ]}
-		            align={{
-		              overflow: {adjustY:0,adjustX:0},
-		              offset: [-10,0],
-		            }}
-		            onVisibleChange={this.handleVisibleChange}
-		            onSelect={this.onSelect}>
-		            <div style={{
-		              height: "100%",
-		              padding: "0 15px",
-		              marginRight: "-15px",
-		              display: "flex",
-		              alignItems: "center",
-		            }}>
-		            <Icon type="ellipsis" />
-	            </div>
-	          </Popover>
-	        }>
-			        NavBar
-			      </NavBar>		      
+			            		visible={this.state.visible}
+			            		overlay={[
+			             				 (<Item key="4" value="刷新" icon={(<img src={require("./img/load.png")} alt="" className="icon-refresh" />)} data-seed="logId">刷新</Item>),
+					              (<Item key="5" value="special" icon={(<img src={require("./img/shaixuan.png")} alt=""/>)} style={{ whiteSpace:"nowrap" }}>筛选</Item>),
+					              (<Item key="6" value="button ct" icon={(<img src={require("./img/down.png")} alt=""/>)}>
+					                <span style={{ marginRight: 5 }}>保存本地</span>
+					              </Item>),(<Item key="7" value="button ct" icon={(<img src={require("./img/share.png")} alt=""/>)}>
+					                <span style={{ marginRight: 5 }}>分享好友</span>
+					              </Item>)
+					            ]}
+					            align={{
+					              overflow: {adjustY:0,adjustX:0},
+					              offset: [-10,0],
+					            }}
+					            onVisibleChange={this.handleVisibleChange}
+					            onSelect={this.onSelect}>
+					            <div style={{
+						              height: "100%",
+						              padding: "0 15px",
+						              marginRight: "-15px",
+						              display: "flex",
+						              alignItems: "center",
+						            }}>
+						            <Icon type="ellipsis" />
+					            </div>
+					        </Popover>}>
+			       		{this.props.state.start_station}<img src={require("./img/arror.png")} alt="" style={{width:"32px",height:"15px"}}/>{this.props.state.end_station}
+			        </NavBar>		      
 		     	</div>
 		     	
 			    <FootNavLink/>
 			    
-		     	<NavBar className="data-nav" leftContent="前一天" rightContent="后一天">NavBar</NavBar>
+		     	<NavBar className="data-nav" leftContent="前一天" rightContent="后一天">
+		     		NavBar
+		     	</NavBar>
 
 				<Accordion >
 			        <Accordion.Panel header={(
@@ -105,7 +113,7 @@ class SearchResult extends React.Component{
 				     					G13
 				     				</Flex.Item>
 				     				<Flex.Item>
-				     					<List.Item multipleLine onClick={() => {}}>北京西<List.Item.Brief>13:45</List.Item.Brief></List.Item>
+				     					<List.Item multipleLine onClick={() => {}}>{this.props.state.start_station}<List.Item.Brief>13:45</List.Item.Brief></List.Item>
 				     				</Flex.Item>
 				     				<Flex.Item className="result-info-list">
 										<p><img src={require("./img/ticket.png")} alt=""/></p>
@@ -113,7 +121,7 @@ class SearchResult extends React.Component{
 										<p>111</p>
 				     				</Flex.Item>
 				     				<Flex.Item className="result-info-list">
-				     					<List.Item multipleLine onClick={() => {}}>上海虹桥 <List.Item.Brief>13:45</List.Item.Brief>
+				     					<List.Item multipleLine onClick={() => {}}>{this.props.state.end_station} <List.Item.Brief>13:45</List.Item.Brief>
 		        </List.Item>
 				     				</Flex.Item>
 				     			</Flex>

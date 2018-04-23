@@ -34,7 +34,6 @@ class ChooseTime extends React.Component{
   };
   render() {
   	const imgUrl=require("./img/clock.png");
-  	console.log("时间=>"+this.state.sValue);
     return (<div>
       <List style={{backgroundColor:"white"}} className="picker-list">
           <List.Item>
