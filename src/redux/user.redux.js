@@ -43,9 +43,7 @@ function authSuccess(data){
 function errorMsg(msg){
 	return {type:ERROR_MSG,msg}
 }
-function isStudent(data){
-	return {type:IS_STUDENT,data}
-}
+
 export function loginOutSubmit(){
 	return {type:LOGIN_OUT};
 }
@@ -65,7 +63,7 @@ export function user(state=initState,action){
 		case LOGIN_OUT:
 			return {...initState,redirectTo:"/login"};
 		case IS_STUDENT:
-			return {...state,msg:"",...action.data}
+			return {...state,msg:"",...action.data,isStudent:true}
 		default:
 			return state;
 	}

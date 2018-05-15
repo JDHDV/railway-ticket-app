@@ -1,6 +1,7 @@
 const express=require("express");
 const Router=express.Router();
 const Ticket=require("./model").getModel("ticket");
+const dataArr=require("../src/data.js");
 
 const utils=require("utility");
 
@@ -14,10 +15,14 @@ Router.get("/ticketlist",(req,res)=>{
 	})
 })
 
+Router.get("/searchresult",(req,res)=>{
+	console.log("data=>"+JSON.stringify(dataArr));
+})
+
 Router.get("/creatlist",(req,res)=>{
 	//清空数据库
 //	Ticket.remove({},(err,data)=>{});
-
+	
 //	Ticket.create({
 //	    "train_no": "K526",
 //		"train_type": "K",

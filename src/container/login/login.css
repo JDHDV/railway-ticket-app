@@ -6,15 +6,17 @@
 	width:60%;
 	margin:20px auto 
 }
-.error-msg{
-	width:90%;
-	text-align:center;
-	color:red;
-}
 .login-container p{
-	width:20%;
+	width:100%;
 	line-height:30px;
 	margin:0px auto;
 	text-align:center;
 	font-size:18px;
 }
+.login-container p.error-msg{
+	width:90%;
+	text-align:center;
+	color:red;
+	font-size: 14px;
+}
+

@@ -52,10 +52,6 @@ class Login extends React.Component{
 	          />	       
 					</List>	
 					
-					<WhiteSpace/>
-						{this.props.msg?(<p className="error-msg">{this.props.msg}</p>):null}
-					<WhiteSpace/>
-					
 					<div className="btn-container">
 						<Flex>
 							<Flex.Item>
@@ -66,6 +62,10 @@ class Login extends React.Component{
 							</Flex.Item>
 						</Flex>
 					</div>
+					
+					<WhiteSpace/>
+						{this.props.msg?(<p className="error-msg">{this.props.msg}</p>):null}
+					<WhiteSpace/>
 				</WingBlank>
 			</div>
 		)

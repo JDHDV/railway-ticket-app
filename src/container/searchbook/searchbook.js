@@ -3,6 +3,7 @@ import React from "react"
 import {NavBar,Tabs,Badge,List} from "antd-mobile"
 
 import NavLink from "../../component/navlink/navlink"
+import "./searchbook.css"
 
 const now=new Date();
 let day=now.getDay();

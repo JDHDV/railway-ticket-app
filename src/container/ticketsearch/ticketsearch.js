@@ -42,10 +42,11 @@ class TicketSearch extends React.Component{
 		this.handleSearch=this.handleSearch.bind(this);
 		this.handleAddress=this.handleAddress.bind(this);
 		this.handleChat=this.handleChat.bind(this);
-		this.handleChange=this.handleChange.bind(this);
+		this.handleChangeStation=this.handleChangeStation.bind(this);
 		this.handleChangeStu=this.handleChangeStu.bind(this);
 		this.handleDate=this.handleDate.bind(this);
 	}
+
 	handleDate(params){
 	    console.log(params);
     }
@@ -64,11 +65,13 @@ class TicketSearch extends React.Component{
 	handleChat(){
 		this.props.history.push("./chat");
 	}
-	handleChange(){
-		this.setState({
-			start_station:this.state.end_station,
-			end_station:this.state.start_station
-		});
+	handleChangeStation(){
+		var start=this.props.state.start_station;
+		var end=this.props.state.end_station;
+		this.props.state.start_station=end;
+		this.props.state.end_station=start;
+		console.log(this.props.state.start_station);
+		console.log(this.props.state.end_station);
 	}
 	handleChangeStu(){
 		this.setState({
@@ -101,7 +104,7 @@ class TicketSearch extends React.Component{
 			component:null,
 			hide:this.props.type==="bookcar"
 		}];
- 
+		
 		return(
 			<div className="ticket-search">
 				<NavBar mode="dark" key={require("./img/talk.png")} rightContent={[
@@ -118,7 +121,7 @@ class TicketSearch extends React.Component{
 					<List >
 						<Flex className="address-list">
 							<Flex.Item onClick={()=>{this.handleAddress("start")}}>{this.props.state.start_station}</Flex.Item>
-							<Flex.Item  onClick={this.handleChange}><img src={require("./img/change.png")} alt="" className="icon_change"/></Flex.Item>
+							<Flex.Item onClick={this.handleChangeStation}><img src={require("./img/change.png")} alt="" className="icon_change"/></Flex.Item>
 							<Flex.Item onClick={()=>{this.handleAddress("end")}}>{this.props.state.end_station}</Flex.Item>
 						</Flex>
 					</List>

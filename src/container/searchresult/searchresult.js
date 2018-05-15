@@ -61,7 +61,6 @@ class SearchResult extends React.Component{
   	}
   
 	render(){
-		console.log(this.props.startTime);
 		return(
 			<div className="search-result">
 				<div>

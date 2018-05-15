@@ -1,7 +1,7 @@
 import React from "react"
 import {connect} from "react-redux"
 import {Redirect} from "react-router-dom"
-import browserCookie from "browser-cookies"
+//import browserCookie from "browser-cookies"
 import {loginOutSubmit} from "../../redux/user.redux"
 import {NavBar,Icon,List,WhiteSpace,Button,WingBlank} from "antd-mobile"
 
