@@ -6,12 +6,11 @@ import {NavBar,Icon,Popover,Flex,List,Accordion,WhiteSpace} from "antd-mobile"
 
 import "./searchresult.css"
 import "./footnavlink.css"
-// import FootNavLink from "../../component/footnavlink/footnavlink"
 
 const Item = Popover.Item;
 const dataObj=require("./data/data.js");
 const dataArr=dataObj.default.data;
-// console.log(JSON.stringify(data));
+
 
 @connect(state=>{
 	return {
@@ -37,6 +36,7 @@ class SearchResult extends React.Component{
 			arr:[],
 			newArr:[],
 			index:0,
+			price:false,
 			StarSort:true
 		}
 		this.handleBack=this.handleBack.bind(this);
@@ -47,10 +47,10 @@ class SearchResult extends React.Component{
 		this.handleBeforeData=this.handleBeforeData.bind(this);
 		this.handleAfterData=this.handleAfterData.bind(this);
 		this.handleStartSort=this.handleStartSort.bind(this);
+		this.handleEndSort=this.handleEndSort.bind(this);
+		this.handlePricTick=this.handlePricTick.bind(this);
 		this.test=this.test.bind(this);
 
-		// this.state.newArr=this.state.arr;
-		
 		var data=this.getCookie("data");
 		this.state.data=data;
 		
@@ -115,6 +115,27 @@ class SearchResult extends React.Component{
 				var value2=b.start_time;
 				return value1-value2;
 			})
+	}
+	
+	handleEndSort(){
+		console.log(111)
+		this.state.arr.reverse(function(a,b){
+			var value1=a.end_time;
+			var value2=b.end_time;
+			return value1-value2;
+		})
+		console.log(JSON.stringify(this.state.arr))
+	}
+	handlePricTick(){
+		if(!this.state.price){
+			this.setState({
+				price:true
+			})
+		}else{
+			this.setState({
+				price:false
+			})
+		}
 	}
 	//前一天
 	beforeData(date){
@@ -238,7 +259,7 @@ class SearchResult extends React.Component{
 				     			<Flex className="seat-list">
 									{val.price_list.map(v=>(
 										<Flex.Item key={this.state.index++}>
-											{v.price_type}:{v.num}张
+											{v.price_type}:{this.state.price?(v.price+"￥"):(v.num+"张")}
 										</Flex.Item>
 									))}
 				     			</Flex>
@@ -280,11 +301,13 @@ class SearchResult extends React.Component{
 							<Accordion.Panel header="历时"></Accordion.Panel>
 						</Accordion>
 						</Flex.Item>
-						<Flex.Item><Accordion defaultActiveKey="0" className="my-accordion" onChange={this.onChange}>
+						<Flex.Item  onClick={this.handleEndSort}><Accordion defaultActiveKey="0" className="my-accordion" onChange={this.onChange}>
 							<Accordion.Panel header="到时"></Accordion.Panel>
 						</Accordion>
 						</Flex.Item>
-						<Flex.Item><span>票价</span>/<span>余票</span></Flex.Item>
+						<Flex.Item onClick={this.handlePricTick}>
+						       <span className={this.state.price?"curr":""}>票价</span>/<span className={this.state.price?"":"curr"}>余票</span>
+						</Flex.Item>
 						</Flex>
 					</div>
 			</div>
