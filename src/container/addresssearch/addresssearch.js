@@ -2,7 +2,7 @@
 import React from "react";
 import {NavBar,Icon,SearchBar,WhiteSpace,List} from "antd-mobile";
 import {connect} from 'react-redux';
-import {selectStartStationRedux} from '../../redux/ticket.redux.js';
+import {selectStartStationRedux,ticketSearch} from '../../redux/ticket.redux.js';
 
 import "./addresssearch.css";
 
@@ -14,7 +14,7 @@ const addressData=require("./data/addressData.json");
 			state:state.ticket
 		}
 	},
-    {selectStartStationRedux}
+    {selectStartStationRedux,ticketSearch}
 )
 class AddressSearch extends React.Component{
 	constructor(props){
@@ -30,6 +30,9 @@ class AddressSearch extends React.Component{
 		this.handleScroll=this.handleScroll.bind(this);
 		this.handleChange=this.handleChange.bind(this);
 		this.selectStation=this.selectStation.bind(this);
+		this.scroll=this.scroll.bind(this);
+		this.handleAddUsed=this.handleAddUsed.bind(this);
+		this.setCookie=this.setCookie.bind(this);
 	}
 	//返回箭头
 	handleBack(){
@@ -79,23 +82,67 @@ class AddressSearch extends React.Component{
 	    	})
 	    } 
 	}
+
+	//模糊查询滚动
+	scroll(distance){
+        var anchorIndex = distance;
+        var sumHeight = 0;
+        var sum = 0;
+        var listGroup = this.state.listGroup;
+        if (anchorIndex === 0) {
+            sumHeight = 0;
+            sum = 0;
+        } else {
+            for (var i = 0; i < anchorIndex; i++) {
+                sumHeight += (listGroup[i].props.children.length) * 44;
+            }
+            sum = sumHeight + anchorIndex * 40;
+        }
+        this.refs.container.scrollTop = sum;
+	}
+
 	//模糊查询
 	handleChange(val){
-		console.log(val);
+		for(var i=0;i<addressData.length;i++){
+			for(var j=0;j<addressData[i].items.length;j++){
+				if(val.charAt(0)===addressData[i].title.toLowerCase()||val.charAt(0)===addressData[i].title) {
+					// console.log(addressData[i].items)
+					this.scroll(i);
+				}
+			}
+		}	
 	}
+	
+	//添加到常用
+	handleAddUsed(v){
+		(addressData[0].items).push(v);
+	}
+	
 	//选择站点
 	selectStation(v){
 		if(this.props.state.start_station==="start"){
+			this.handleAddUsed(v);
+			document.cookie="start="+v;
 			this.props.selectStartStationRedux({start_station:v});
 			this.props.history.push("./ticketsearch");
 		}
 		if(this.props.state.end_station==="end"){
+			document.cookie="end="+v;
 			this.props.selectStartStationRedux({end_station:v});
 			this.props.history.push("./ticketsearch");
 		}
-		
 	}
-	render(){		
+	
+	setCookie(name,value){
+		var username=document.cookie.split(";")[0].split("=")[1];
+		var Days = 30;
+		var exp = new Date();
+		exp.setTime(exp.getTime() + Days*24*60*60*1000);
+		document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+	}
+	
+
+	render(){
 		return(
 			<div className="address-search" ref="container" 
 			     onScroll={this.handleScroll}>
@@ -111,15 +158,15 @@ class AddressSearch extends React.Component{
 							{addressData.map(val=>(<li index={val.index} key={val.index} onClick={this.onShortcutTouchStart}>{val.title}</li>))}
 						</ul>
 					</div>
-					<div className="station-list">
+					<div className="station-list" ref="station">
 						{addressData.map(val=>(<List renderHeader={val.title}  key={val.title} ref={(list)=>{this.state.listGroup.push(list);}}>
 							{val.items.map(v=>(<List.Item key={v} onClick={()=>{this.selectStation(v)}}>{v}</List.Item>))}
 						</List>))}
 					</div>
 				</div>
 				
-                <div className="back-top" style={{display:this.state.display}}>
-              		<img src={require("./img/top.png")} alt="" onClick={()=>{this.refs.container.scrollTop="0"}} ref="backTop"/>
+				<div className="back-top" style={{display:this.state.display}}>
+					<img src={require("./img/top.png")} alt="" onClick={()=>{this.refs.container.scrollTop="0"}} ref="backTop"/>
 				</div>
 				<p className="no-more" style={{display:this.state.show}}>没有更多数据啦~</p>
 			</div>

@@ -28,10 +28,18 @@ class SearchResult extends React.Component{
 			start_station_type:"",
 			end_station_type:"",
 			price_list: [],
-			
+			stuShow:false,
+			data:""
 		}
 		this.handleBack=this.handleBack.bind(this);
 		this.handleTouchEnd=this.handleTouchEnd.bind(this);
+		this.getCookie=this.getCookie.bind(this);
+		this.beforeData=this.beforeData.bind(this);
+		this.afterData=this.afterData.bind(this);
+		this.handleBeforeData=this.handleBeforeData.bind(this);
+		this.handleAfterData=this.handleAfterData.bind(this);
+		var data=this.getCookie("data");
+		this.state.data=data;
 	}
 	
 	state = {
@@ -52,13 +60,66 @@ class SearchResult extends React.Component{
 	    });
 	}
 	
-  	handleBack(){
-  		this.props.history.push("./ticketsearch");
-  	}
-  	
-  	handleTouchEnd(){
+	handleBack(){
+		this.props.history.push("./ticketsearch");
+	}
+	
+	handleTouchEnd(){
 		this.props.history.push("./confirmorder");
-  	}
+	}
+	handleBeforeData(){
+		this.beforeData(this.state.data);
+	}
+	handleAfterData(){
+		this.afterData(this.state.data);
+	}
+	//前一天
+	beforeData(date){
+	   var date=date.split('-'),
+     today = new Date().setFullYear(+date[0], +date[1]-1, +date[2]),
+     yesterday = new Date(today - 24 * 60 * 60 * 1000);
+     var y = yesterday.getFullYear();
+     var m = yesterday.getMonth() + 1;
+     var d = yesterday.getDate();
+     if(m<10){
+       m = '0'+m;  
+     }
+     if(d<10){
+          d = '0'+d;
+     }
+		 
+		 var data=y+'-'+m+'-'+d;
+		 this.setState({
+			 data:data
+		 })
+	}
+	
+	//后一天
+	afterData(date){
+		 var date=date.split('-'),
+		 today = new Date().setFullYear(+date[0], +date[1]-1, +date[2]),
+		 yesterday = new Date(today + 24 * 60 * 60 * 1000);
+		 var y = yesterday.getFullYear();
+		 var m = yesterday.getMonth() + 1;
+		 var d = yesterday.getDate();
+		 if(m<10){
+		 	m = '0'+m;  
+		 }
+		 if(d<10){
+		 		d = '0'+d;
+		 }
+		 
+		 var data=y+'-'+m+'-'+d;
+		 this.setState({
+		 	data:data
+		 })
+	}
+	
+	getCookie(name){
+		var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+		if(arr=document.cookie.match(reg))  return unescape(arr[2]);
+		else return null;
+	}
   
 	render(){
 		return(
@@ -93,14 +154,15 @@ class SearchResult extends React.Component{
 						            <Icon type="ellipsis" />
 					            </div>
 					        </Popover>}>
-			       		{this.props.state.start_station}<img src={require("./img/arror.png")} alt="" style={{width:"32px",height:"15px"}}/>{this.props.state.end_station}
+			       		{this.props.state.start_station}<img src={require("./img/arror.png")} alt="" style={{width:"32px",height:"15px"}}/>{this.props.state.end_station} {this.getCookie("stu")?'(学生)':''}
+								
 			        </NavBar>		      
 		     	</div>
-		     	
+		     
 			    <FootNavLink/>
 			    
-		     	<NavBar className="data-nav" leftContent="前一天" rightContent="后一天">
-		     		NavBar
+					<NavBar className="data-nav test" leftContent={<span onClick={this.handleBeforeData}>前一天</span>} rightContent={<span onClick={this.handleAfterData}>后一天</span>}>
+		     		<span style={{fontSize:"12px"}}>{this.state.data}</span>
 		     	</NavBar>
 
 				<Accordion >

@@ -15,38 +15,14 @@ Router.get("/ticketlist",(req,res)=>{
 	})
 })
 
-Router.get("/searchresult",(req,res)=>{
-	console.log("data=>"+JSON.stringify(dataArr));
+Router.post("/searchresult",(req,res)=>{
+	// const {train_no,train_type,start_station,start_station_type,end_station,end_station_type,start_time,end_time,run_time,price_list,price_type,price}=req.body;
+// 	console.log()
+	console.log(req);
 })
 
 Router.get("/creatlist",(req,res)=>{
 	//清空数据库
 //	Ticket.remove({},(err,data)=>{});
-	
-//	Ticket.create({
-//	    "train_no": "K526",
-//		"train_type": "K",
-//		"start_station": "上海南",
-//		"start_station_type": "过",
-//		"end_station": "苏州",
-//		"end_station_type": "过",
-//		"start_time": "04:14",
-//		"end_time": "05:31",
-//		"run_time": "1小时17分",
-//		"price_list": [{
-//				"price_type": "硬座",
-//				"price": "15.5"
-//			},
-//			{
-//				"price_type": "硬卧",
-//				"price": "69.5"
-//			},
-//			{
-//				"price_type": "软卧",
-//				"price": "105"
-//			}
-//		]},(err,data)=>{
-//		    return res.json(data);
-//	})
 })
 module.exports=Router;

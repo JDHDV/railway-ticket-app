@@ -36,7 +36,8 @@ class TicketSearch extends React.Component{
 			start_station_type:"",
 			end_station_type:"",
 			price_list: [],
-			isStudent:true
+			isStudent:true,
+			isStu:null
 		}
 		
 		this.handleSearch=this.handleSearch.bind(this);
@@ -45,12 +46,16 @@ class TicketSearch extends React.Component{
 		this.handleChangeStation=this.handleChangeStation.bind(this);
 		this.handleChangeStu=this.handleChangeStu.bind(this);
 		this.handleDate=this.handleDate.bind(this);
+		this.setCookie=this.setCookie.bind(this);
+		this.getCookie=this.getCookie.bind(this);
 	}
 
 	handleDate(params){
-	    console.log(params);
+		document.cookie="data="+params;
+	    // console.log(params);
     }
 	handleSearch(){
+		// this.props.ticketSearch(this.state);
 		this.props.history.push("./searchresult");
 	}
 	handleAddress(v){
@@ -70,14 +75,29 @@ class TicketSearch extends React.Component{
 		var end=this.props.state.end_station;
 		this.props.state.start_station=end;
 		this.props.state.end_station=start;
-		console.log(this.props.state.start_station);
-		console.log(this.props.state.end_station);
 	}
 	handleChangeStu(){
 		this.setState({
-			isStudent:!this.state.isStudent
+			isStudent:!this.state.isStudent,
+			isStu:this.state.isStudent
 		})
+		document.cookie="stu="+!this.state.isStu;
 	}	
+	
+	setCookie(name,value){
+		var username=document.cookie.split(";")[0].split("=")[1];
+		var Days = 30;
+		var exp = new Date();
+		exp.setTime(exp.getTime() + Days*24*60*60*1000);
+		document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+	}
+	
+	getCookie(name){
+		var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+		if(arr=document.cookie.match(reg))   return unescape(arr[2]);
+		else  return null;
+	}
+	
 	render(){
 		const iconNavList=[{
 			path:"/clock",
@@ -120,9 +140,9 @@ class TicketSearch extends React.Component{
 				<WingBlank>
 					<List >
 						<Flex className="address-list">
-							<Flex.Item onClick={()=>{this.handleAddress("start")}}>{this.props.state.start_station}</Flex.Item>
+							<Flex.Item onClick={()=>{this.handleAddress("start")}}>{this.getCookie("start")?this.getCookie("start"):this.props.state.start_station}</Flex.Item>
 							<Flex.Item onClick={this.handleChangeStation}><img src={require("./img/change.png")} alt="" className="icon_change"/></Flex.Item>
-							<Flex.Item onClick={()=>{this.handleAddress("end")}}>{this.props.state.end_station}</Flex.Item>
+							<Flex.Item onClick={()=>{this.handleAddress("end")}}>{this.getCookie("end")?this.getCookie("end"):this.props.state.end_station}</Flex.Item>
 						</Flex>
 					</List>
 					<List className="time-list">
