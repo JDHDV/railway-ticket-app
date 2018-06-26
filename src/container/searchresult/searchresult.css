@@ -24,6 +24,16 @@
     font-size: 12px;
 }
 
+.search-result .am-flexbox .am-flexbox-item {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -ms-flex: 1;
+    flex: 1 1;
+    /*font-size: 12px;*/
+    margin-left: 8px;
+    min-width: 10px;
+}
+
 .search-result .am-list-item .am-list-line .am-list-content {
     -ms-flex: 1;
     color: #000;
@@ -41,7 +51,7 @@
 }
 .search-result .am-list-item .am-list-line .am-list-brief {
     color: #888;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 1.5;
     margin-top: 6px;
     width: auto;
@@ -119,6 +129,7 @@
 }
 .result-info-list p{
 	margin:0;
+	font-size: 12px;
 	text-align:center;
 }
 .result-info-list img{
@@ -145,3 +156,4 @@
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.21);
     overflow: hidden;
 }
+

@@ -5,9 +5,13 @@ import {ticketSearch,selectStartStationRedux} from "../../redux/ticket.redux"
 import {NavBar,Icon,Popover,Flex,List,Accordion,WhiteSpace} from "antd-mobile"
 
 import "./searchresult.css"
-import FootNavLink from "../../component/footnavlink/footnavlink"
+import "./footnavlink.css"
+// import FootNavLink from "../../component/footnavlink/footnavlink"
 
 const Item = Popover.Item;
+const dataObj=require("./data/data.js");
+const dataArr=dataObj.default.data;
+// console.log(JSON.stringify(data));
 
 @connect(state=>{
 	return {
@@ -29,7 +33,11 @@ class SearchResult extends React.Component{
 			end_station_type:"",
 			price_list: [],
 			stuShow:false,
-			data:""
+			data:"",
+			arr:[],
+			newArr:[],
+			index:0,
+			StarSort:true
 		}
 		this.handleBack=this.handleBack.bind(this);
 		this.handleTouchEnd=this.handleTouchEnd.bind(this);
@@ -38,8 +46,30 @@ class SearchResult extends React.Component{
 		this.afterData=this.afterData.bind(this);
 		this.handleBeforeData=this.handleBeforeData.bind(this);
 		this.handleAfterData=this.handleAfterData.bind(this);
+		this.handleStartSort=this.handleStartSort.bind(this);
+		this.test=this.test.bind(this);
+
+		// this.state.newArr=this.state.arr;
+		
 		var data=this.getCookie("data");
 		this.state.data=data;
+		
+		var start=this.getCookie("start");
+		var end=this.getCookie("end");
+		
+		for(var i=0;i<dataArr.length;i++){
+			if(dataArr[i].start_station.indexOf(start)>-1&&dataArr[i].end_station.indexOf(end)>-1){
+				this.state.arr.push(dataArr[i]);
+			}
+		}
+	}
+	
+	componentDidMount() {
+		this.timerID = setInterval(() =>this.test(),1000);
+	}
+			
+	componentWillUnmount() {
+		clearInterval(this.timerID);
 	}
 	
 	state = {
@@ -72,6 +102,19 @@ class SearchResult extends React.Component{
 	}
 	handleAfterData(){
 		this.afterData(this.state.data);
+	}
+	
+	test(){
+		this.setState({
+      newArr: this.state.arr
+    });
+	}
+	handleStartSort(){
+			this.state.arr.reverse(function(a,b){
+				var value1=a.start_time;
+				var value2=b.start_time;
+				return value1-value2;
+			})
 	}
 	//前一天
 	beforeData(date){
@@ -154,35 +197,38 @@ class SearchResult extends React.Component{
 						            <Icon type="ellipsis" />
 					            </div>
 					        </Popover>}>
-			       		{this.props.state.start_station}<img src={require("./img/arror.png")} alt="" style={{width:"32px",height:"15px"}}/>{this.props.state.end_station} {this.getCookie("stu")?'(学生)':''}
+			       		{this.getCookie("start")?this.getCookie("start"):this.props.state.start_station}<img src={require("./img/arror.png")} alt="" style={{width:"32px",height:"15px"}}/>{this.getCookie("end")?this.getCookie("end"):this.props.state.end_station} {this.getCookie("stu")?'(学生)':''}
 								
 			        </NavBar>		      
 		     	</div>
 		     
-			    <FootNavLink/>
+			    
 			    
 					<NavBar className="data-nav test" leftContent={<span onClick={this.handleBeforeData}>前一天</span>} rightContent={<span onClick={this.handleAfterData}>后一天</span>}>
-		     		<span style={{fontSize:"12px"}}>{this.state.data}</span>
+		     		<span style={{fontSize:"12px"}}>{this.getCookie("data")?this.getCookie("data"):this.state.data}</span>
 		     	</NavBar>
 
-				<Accordion >
+					{this.state.newArr.map(val=>(
+				<Accordion key={this.state.index++}>
 			        <Accordion.Panel header={(
 			        	<List className="train-list" onTouchEnd={this.handleTouchEnd}>
 				     		<List.Item>
 				     			<Flex className="result-list">
 				     				<Flex.Item>
-				     					G13
+				     					{val.train_no}
 				     				</Flex.Item>
 				     				<Flex.Item>
-				     					<List.Item multipleLine onClick={() => {}}>{this.props.state.start_station}<List.Item.Brief>13:45</List.Item.Brief></List.Item>
+				     					<List.Item multipleLine onClick={() => {}}>{val.start_station}<List.Item.Brief>{val.start_time}</List.Item.Brief></List.Item>
+				     				</Flex.Item>
+										
+										
+				     				<Flex.Item className="result-info-list">
+											<p><img src={require("./img/ticket.png")} alt=""/></p>
+											<p><img src={require("./img/arrow-right.png")} alt=""/></p>
+											<p>{val.run_time}</p>
 				     				</Flex.Item>
 				     				<Flex.Item className="result-info-list">
-										<p><img src={require("./img/ticket.png")} alt=""/></p>
-										<p><img src={require("./img/arrow-right.png")} alt=""/></p>
-										<p>111</p>
-				     				</Flex.Item>
-				     				<Flex.Item className="result-info-list">
-				     					<List.Item multipleLine onClick={() => {}}>{this.props.state.end_station} <List.Item.Brief>13:45</List.Item.Brief>
+				     					<List.Item multipleLine onClick={() => {}}>{this.getCookie("end")?this.getCookie("end"):this.props.state.end_station} <List.Item.Brief>{val.end_time}</List.Item.Brief>
 		        </List.Item>
 				     				</Flex.Item>
 				     			</Flex>
@@ -190,15 +236,11 @@ class SearchResult extends React.Component{
 				     		<WhiteSpace size="lg"/ >
 				     		<List.Item className="seat-category-list">
 				     			<Flex className="seat-list">
-				     				<Flex.Item>
-				     					商务:1张
-				     				</Flex.Item>
-				     				<Flex.Item>
-				     					商务:1张
-				     				</Flex.Item>
-				     				<Flex.Item>
-				     					商务:1张
-				     				</Flex.Item>
+									{val.price_list.map(v=>(
+										<Flex.Item key={this.state.index++}>
+											{v.price_type}:{v.num}张
+										</Flex.Item>
+									))}
 				     			</Flex>
 				     		</List.Item>
 			     		</List>
@@ -225,6 +267,26 @@ class SearchResult extends React.Component{
 			            </List>
 			      	</Accordion.Panel>
 			    </Accordion>
+					))}
+					
+					
+					<div className="foot-navlink">
+					<Flex>
+						<Flex.Item  onClick={this.handleStartSort}><Accordion defaultActiveKey="0" className="my-accordion" onChange={this.onChange}>
+							<Accordion.Panel header="发时"></Accordion.Panel>
+						</Accordion>
+						</Flex.Item>
+						<Flex.Item><Accordion defaultActiveKey="0" className="my-accordion" onChange={this.onChange}>
+							<Accordion.Panel header="历时"></Accordion.Panel>
+						</Accordion>
+						</Flex.Item>
+						<Flex.Item><Accordion defaultActiveKey="0" className="my-accordion" onChange={this.onChange}>
+							<Accordion.Panel header="到时"></Accordion.Panel>
+						</Accordion>
+						</Flex.Item>
+						<Flex.Item><span>票价</span>/<span>余票</span></Flex.Item>
+						</Flex>
+					</div>
 			</div>
 		)
 	}

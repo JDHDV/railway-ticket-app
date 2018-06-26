@@ -17,6 +17,8 @@ import ChooseData from "../../component/choosedata/choosedata"
 import CarCategory from "../../component/carcategory/carcategory"
 import IconNavLink from "../../component/iconnavlink/iconnavlink"
 
+const dataArr=require("./data/data.js");
+
 @connect(state=>{
 	return {
 		state:state.ticket
@@ -52,10 +54,8 @@ class TicketSearch extends React.Component{
 
 	handleDate(params){
 		document.cookie="data="+params;
-	    // console.log(params);
     }
 	handleSearch(){
-		// this.props.ticketSearch(this.state);
 		this.props.history.push("./searchresult");
 	}
 	handleAddress(v){
