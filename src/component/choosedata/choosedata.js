@@ -19,6 +19,8 @@ class ChooseData extends React.Component {
 			config: {},
 			startTime:now.getFullYear()+"-"+((now.getMonth()+1)<10?("0"+(now.getMonth()+1)):(now.getMonth()+1))+"-"+(now.getDate()<10?("0"+now.getDate()):now.getDate())
 		};
+		
+		this.setCookie=this.setCookie.bind(this);
 	}	
 	renderBtn(zh, en,config = {},startTime) {
 		config.locale = this.state.en ? enUS : zhCN;
@@ -30,6 +32,7 @@ class ChooseData extends React.Component {
 					startTime:now.getFullYear()+"-"+((now.getMonth()+1)<10?("0"+(now.getMonth()+1)):(now.getMonth()+1))+"-"+(now.getDate()<10?"0"+now.getDate():now.getDate()),
 					config
 				});
+				this.setCookie(this.state.startTime);
 			}
 		} > {
 			this.state.en ? en : zh
@@ -50,6 +53,14 @@ class ChooseData extends React.Component {
 			startTime: now.getFullYear()+"-"+((now.getMonth()+1)<10?("0"+(now.getMonth()+1)):(now.getMonth()+1))+"-"+(now.getDate()<10?("0"+now.getDate()):now.getDate())
 		});
 	}
+	setCookie(name,value){
+		var username=document.cookie.split(";")[0].split("=")[1];
+		var Days = 30;
+		var exp = new Date();
+		exp.setTime(exp.getTime() + Days*24*60*60*1000);
+		document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+	}
+	
 	render() {
 		this.props.data(this.state.startTime);
 		return ( 

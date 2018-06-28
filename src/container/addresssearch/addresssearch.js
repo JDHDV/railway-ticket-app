@@ -106,7 +106,6 @@ class AddressSearch extends React.Component{
 		for(var i=0;i<addressData.length;i++){
 			for(var j=0;j<addressData[i].items.length;j++){
 				if(val.charAt(0)===addressData[i].title.toLowerCase()||val.charAt(0)===addressData[i].title) {
-					// console.log(addressData[i].items)
 					this.scroll(i);
 				}
 			}
@@ -122,12 +121,12 @@ class AddressSearch extends React.Component{
 	selectStation(v){
 		if(this.props.state.start_station==="start"){
 			this.handleAddUsed(v);
-			document.cookie="start="+v;
+			this.setCookie("start",v);
 			this.props.selectStartStationRedux({start_station:v});
 			this.props.history.push("./ticketsearch");
 		}
 		if(this.props.state.end_station==="end"){
-			document.cookie="end="+v;
+			this.setCookie("end",v);
 			this.props.selectStartStationRedux({end_station:v});
 			this.props.history.push("./ticketsearch");
 		}

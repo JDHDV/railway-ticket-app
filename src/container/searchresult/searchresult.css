@@ -1,6 +1,22 @@
+ul,li{
+	width: 100%;
+	list-style:none;
+	margin:0;
+	padding:0;
+}
 .search-result{
 	width: 100%;
 	height: 100%;
+	overflow-y:scroll;
+	padding-top:75px;
+}
+.search-result .station_list{
+	width: 100%;
+	height: 100%;
+}
+.search-result ul{
+	wwidth: 100%;
+	height: auto;
 }
 .search-result.icon-refresh{
 	margin-top:-5px;

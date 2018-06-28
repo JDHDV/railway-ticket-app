@@ -53,7 +53,7 @@ class TicketSearch extends React.Component{
 	}
 
 	handleDate(params){
-		document.cookie="data="+params;
+		this.setCookie("data",params);
     }
 	handleSearch(){
 		this.props.history.push("./searchresult");
